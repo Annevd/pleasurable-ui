@@ -1,0 +1,77 @@
+<%- include('./partials/head') %>
+
+<%- include('./partials/navigation', {current: '/lessons'}); %>
+
+<main class="all-stories">
+
+    <section class="stories-head">
+
+        <div class="header">
+
+            <a href="/lessons" aria-label="go back">
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3357 5.10128C16.7796 5.54525 16.7796 6.26506 16.3357 6.70902L11.0764 11.9683L16.3357 17.2276C16.7796 17.6716 16.7796 18.3914 16.3357 18.8353C15.8917 19.2793 15.1719 19.2793 14.7279 18.8353L8.66476 12.7722C8.2208 12.3282 8.2208 11.6084 8.66476 11.1644L14.7279 5.10128C15.1719 4.65732 15.8917 4.65732 16.3357 5.10128Z" fill="white"/>
+                </svg>
+            </a>
+            <h2>All stories</h2>
+        </div>
+
+        <!-- Zoekbalk -->
+
+        <form class="search"  role="search">
+            <label for="search">Search for stories</label>
+            <input id="search" type="search" placeholder="Search for stories" required>
+            <button type="submit">Go</button>    
+        </form>
+
+        <!-- Filters -->
+
+        <fieldset class="filters">
+            <label for="select1">Choose animal</label>
+            <select name="select" id="select1">
+                <option disabled selected value>Animal</option>
+                <option value="all">Show all</option>
+                <option value="cow">Cow</option>
+            </select>
+
+            <label for="select2">Choose season</label>
+            <select name="select" id="select2">
+                <option disabled selected value>Season</option>
+                <option value="all">Show all</option>
+            </select>
+
+            <label for="select3">Choose language</label>
+            <select name="select" id="select3">
+                <option disabled selected value>Language</option>
+                <option value="all">Show all</option>
+                <option value="english">English</option>
+                <option value="dutch">Dutch</option>
+            </select>
+
+            <label for="select4">Sort on</label>
+            <select name="select" id="select4">
+                <option disabled selected value>Sorting</option>
+                <option value="a-z">A-Z</option>
+                <option value="z-a">Z-A</option>
+            </select>
+        </fieldset>
+
+    </section>
+
+    <!-- Verhalen -->
+
+    <section class="stories">
+
+        <% if (stories && stories.length > 0) { %>
+        <ul class="stories-content">
+            <%- include('./partials/all-story-item') %>
+        </ul>
+        <% } else { %>
+            <p>No stories available.</p>
+        <% } %>
+
+    </section>
+
+</main>
+
+<%- include('./partials/foot') %>
