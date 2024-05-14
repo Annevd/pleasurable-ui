@@ -1,0 +1,147 @@
+<%- include('./partials/head') %>
+
+    <%- include('./partials/navigation', {current: '/lessons' }); %>
+
+        <main class="lessons">
+            <section class="activity">
+                <h1>Lessons</h1>
+
+                <ol>
+                    <li>Listening
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.9583 2.16663C11.9583 4.58287 13.917 6.54163 16.3333 6.54163C16.6785 6.54163 16.9583 6.82145 16.9583 7.16663C16.9583 7.5118 16.6785 7.79163 16.3333 7.79163C14.5663 7.79163 12.9895 6.97683 11.9583 5.70246V15.5C11.9583 17.6861 10.1861 19.4583 7.99996 19.4583C5.81383 19.4583 4.04163 17.6861 4.04163 15.5C4.04163 13.3138 5.81383 11.5416 7.99996 11.5416C9.04764 11.5416 10.0002 11.9486 10.7083 12.6132V2.16663H11.9583ZM10.7083 15.5C10.7083 14.0042 9.49573 12.7916 7.99996 12.7916C6.50419 12.7916 5.29163 14.0042 5.29163 15.5C5.29163 16.9957 6.50419 18.2083 7.99996 18.2083C9.49573 18.2083 10.7083 16.9957 10.7083 15.5Z"
+                                fill="white" />
+                        </svg>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Own playlists -->
+
+            <section class="own-playlists">
+
+                <h2>Own playlists</h2>
+
+                <ul>
+                    <li class="add-playlist">
+                        <button title="add playlist">
+                            <svg width="68" height="68" viewBox="0 0 68 68" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="30" width="8" height="68" rx="4" fill="white" />
+                                <rect x="68" y="30" width="8" height="68" rx="4" transform="rotate(90 68 30)"
+                                    fill="white" />
+                            </svg>
+                            <span><strong>Make a playlist !</strong></span>
+                            <span>Add your favourite stories in one playlist</span>
+                        </button>
+                    </li>
+                    <%- include('./partials/own-playlist-item') %>
+                </ul>
+
+            </section>
+
+            <!-- All stories -->
+
+            <section class="stories">
+
+                <h2>All stories</h2>
+
+                <div class="language-content">
+                    <div class="lang-button-container">
+                        <% languages.slice(0,2).forEach(language=> { %>
+                            <button title="select language">
+                                <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>"
+                                    alt="language flag"
+                                    onerror="this.onerror=null;this.src='images/flag-fallback.png';">
+                                <%- language.language %>
+                            </button>
+                            <% }) %>
+                    </div>
+
+                    <a href="/lessons/stories">Show all</a>
+                </div>
+
+                <div class="stories-overlay">
+                    <% if (stories && stories.length> 0) { %>
+                        <ul class="stories-content">
+                            <%- include('./partials/story-item') %>
+                        </ul>
+                        <% } else { %>
+                            <p>No stories available.</p>
+                            <% } %>
+                </div>
+
+                <!-- Paginatie -->
+
+                <div class="pagination">
+                    <button title="previous">
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.3357 5.10128C16.7796 5.54525 16.7796 6.26506 16.3357 6.70902L11.0764 11.9683L16.3357 17.2276C16.7796 17.6716 16.7796 18.3914 16.3357 18.8353C15.8917 19.2793 15.1719 19.2793 14.7279 18.8353L8.66476 12.7722C8.2208 12.3282 8.2208 11.6084 8.66476 11.1644L14.7279 5.10128C15.1719 4.65732 15.8917 4.65732 16.3357 5.10128Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+
+                    <p>1...12</p>
+
+                    <button title="next">
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.66476 18.8358C8.2208 18.3919 8.2208 17.6721 8.66476 17.2281L13.924 11.9688L8.66476 6.70951C8.2208 6.26555 8.2208 5.54574 8.66476 5.10177C9.10873 4.65781 9.82853 4.65781 10.2725 5.10177L16.3357 11.1649C16.7796 11.6089 16.7796 12.3287 16.3357 12.7727L10.2725 18.8358C9.82853 19.2798 9.10872 19.2798 8.66476 18.8358Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Liked playlists -->
+
+            <section class="liked-playlists">
+                <h2>Liked playlists</h2>
+                <div>
+                    <% if (likeList.length> 0) { %> <!-- Check if there are any liked playlists -->
+                        <%- include('./partials/liked-playlist-item') %>
+                            <% } else { %> <!-- If there are no liked playlists -->
+                                <div class="empty-state">
+                                    <div class="empty-state-bg"></div>
+                                    <p>Nothing here yet..</p>
+                                </div>
+                                <% } %>
+                </div>
+            </section>
+
+            <!-- Suggested playlists -->
+
+            <section class="suggested-playlists">
+                <h2>Suggested playlists</h2>
+                <ul>
+                    <%- include('./partials/suggested-playlist-item') %>
+                </ul>
+            </section>
+
+            <!-- UI States -->
+
+            <% if (justUpdated) { %>
+                <% if (whatHappened=="liked" ) { %>
+                    <div class="succes-state">
+                        <p>Playlist <%= justUpdated %> added to liked playlists!</p>
+                        <div class="heart-animation"></div>
+                    </div>
+
+                    <% } else { %>
+                        <div class="deleted-state">
+                            <p>Playlist <%= justUpdated %> removed from liked playlists.</p>
+                        </div>
+                        <% } %>
+                            <% } %>
+
+                                <div class="loader-container">
+                                    <div class="loader"></div>
+                                </div>
+
+        </main>
+
+
+        <%- include('./partials/foot') %>
