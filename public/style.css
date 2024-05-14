@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --poppins: "Poppins", Arial, Helvetica, sans-serif;
+
+  --primary-one: #121212;
+  --primary-two: #fff9f9;
+  --primary-three: #dadfe1;
+
+  --grey: #787878;
+  --green: #0d7131;
+  --purple: #954be2;
+  --purple-accent: #451acf;
+  --purple-dark: #471871;
+  --blue: #509aef;
+  --orange: #f58a43;
+  --light-green: #2baa5a;
+
+  --like: #fb96b6;
+  --like-hover: #ff6464;
+  --like-active: #da3939;
+
+  --gradient-one: linear-gradient(#451971, #162152);
+  --gradient-two: linear-gradient(#471871, #040404);
+  --gradient-three: linear-gradient(#3f93b7, #1c5872);
+
+  --space-reg: 1.2rem;
+  --space-half: 0.6rem;
+  --space-small: 0.3rem;
+  --space-big: 1.8rem;
+  --space-third: 0.9rem;
+}
