@@ -1,0 +1,52 @@
+<ul>
+
+    <% likeList.forEach(playlist=> { %> <!-- Loop through each liked playlist -->
+        <li class="playlist">
+            <figure>
+                <picture>
+                    <% if (playlist.image !=null) { %>
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image %>?format=avif"
+                            type="image/avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= playlist.image %>?format=webp"
+                            type="image/webp">
+                        <img src=" https://fdnd-agency.directus.app/assets/<%=playlist.image %>" height="150"
+                            alt="playlist">
+                        <% } else { %>
+                            <img src="images/sixoclock.png" height="150" alt="playlist">
+                            <% } %>
+                </picture>
+                <figcaption>
+                    <%= playlist.title %>
+                </figcaption>
+            </figure>
+            <div class="playlist-footer">
+                <div class="audio-container">
+                    <a href="/lessons/playlist/<%- playlist.slug %>" aria-label="play">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="#F3A22A" />
+                            <rect width="16.8" height="16.8" transform="translate(3.59961 3.6001)" fill="#F3A22A" />
+                            <path
+                                d="M17.0874 13.0614C17.7817 12.5242 17.7817 11.476 17.0874 10.9387C14.9891 9.31514 12.6461 8.03543 10.146 7.14749L9.68929 6.98528C8.8155 6.67494 7.89254 7.26613 7.77425 8.16812C7.44374 10.6883 7.44374 13.3119 7.77425 15.832C7.89254 16.734 8.8155 17.3252 9.68929 17.0148L10.146 16.8526C12.6461 15.9647 14.9891 14.685 17.0874 13.0614Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                    <p>31 min. 55sec</p>
+                </div>
+                <form class="like-form" method="post" action="/lessons">
+                    <input type="hidden" name="id" value="<%= playlist.id %>">
+                    <input type="hidden" name="image" value="<%= playlist.image %>">
+                    <input type="hidden" name="title" value="<%= playlist.title %>">
+                    <input type="hidden" name="slug" value="<%= playlist.slug %>">
+                    <input type="hidden" name="unlikeId" value="<%= playlist.likeId %>">
+                    <button name="unlike" class="unlike-button" title="unlike playlist" type="submit">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.4 5.25C5.61914 5.25 3.25 7.3293 3.25 10.0298C3.25 11.8927 4.12235 13.4612 5.27849 14.7604C6.43066 16.0552 7.91714 17.142 9.26097 18.0516L11.5796 19.6211C11.8335 19.793 12.1665 19.793 12.4204 19.6211L14.739 18.0516C16.0829 17.142 17.5693 16.0552 18.7215 14.7604C19.8777 13.4612 20.75 11.8927 20.75 10.0298C20.75 7.3293 18.3809 5.25 15.6 5.25C14.1665 5.25 12.9052 5.92214 12 6.79183C11.0948 5.92214 9.83347 5.25 8.4 5.25Z"
+                                fill="#F33232" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </li>
+        <% }) %>
+</ul>

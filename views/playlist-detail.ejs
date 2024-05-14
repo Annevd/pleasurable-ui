@@ -1,0 +1,123 @@
+<%- include('./partials/head') %>
+
+    <%- include('./partials/navigation', {current: '/lessons' }); %>
+
+        <main class="playlist-details">
+
+            <%- include('./partials/playlist-settings') %>
+
+                <div class="playlist-head">
+
+                    <img class="playlist-bg" src="/assets/playlist-detail-bg.svg" height="500" alt="">
+
+                    <a href="/lessons" aria-label="go back">
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.3357 5.10128C16.7796 5.54525 16.7796 6.26506 16.3357 6.70902L11.0764 11.9683L16.3357 17.2276C16.7796 17.6716 16.7796 18.3914 16.3357 18.8353C15.8917 19.2793 15.1719 19.2793 14.7279 18.8353L8.66476 12.7722C8.2208 12.3282 8.2208 11.6084 8.66476 11.1644L14.7279 5.10128C15.1719 4.65732 15.8917 4.65732 16.3357 5.10128Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                    <button title="options">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6 13C4.61929 13 3.5 14.1193 3.5 15.5C3.5 16.8807 4.61929 18 6 18C7.38071 18 8.5 16.8807 8.5 15.5C8.5 14.1193 7.38071 13 6 13Z"
+                                fill="black" />
+                            <path
+                                d="M13.5 15.5C13.5 14.1193 14.6193 13 16 13C17.3807 13 18.5 14.1193 18.5 15.5C18.5 16.8807 17.3807 18 16 18C14.6193 18 13.5 16.8807 13.5 15.5Z"
+                                fill="black" />
+                            <path
+                                d="M23.5 15.5C23.5 14.1193 24.6193 13 26 13C27.3807 13 28.5 14.1193 28.5 15.5C28.5 16.8807 27.3807 18 26 18C24.6193 18 23.5 16.8807 23.5 15.5Z"
+                                fill="black" />
+                        </svg>
+                    </button>
+
+                </div>
+
+                <section class="playlist-info">
+                    <% playlists.forEach(playlist=> { %>
+                        <h2><%- playlist.title %></h2>
+                        <p><%- playlist.description %></p>
+                        <% }) %>
+
+                            <div class="detailed-info">
+                                <div>
+                                    <img src="/assets/profile-pic.svg" alt="">
+                                    <p>Made by <strong>Tom</strong></p>
+                                </div>
+                                <div>
+                                    <img src="/assets/Clock.svg" alt="">
+                                    <p>2u 11m</p>
+                                </div>
+                            </div>
+
+                            <div class="button-container">
+                                <div>
+                                    <button title="download playlist">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.6875 11.1094H12.6914C14.1416 11.1094 15.3281 10.5501 15.3281 9.11602C15.3281 7.6819 13.9307 7.17882 12.7969 7.12266C12.5625 4.87986 10.9248 3.51562 9 3.51562C7.18066 3.51562 6.00891 4.72298 5.625 5.92031C4.04297 6.07061 2.67188 6.86637 2.67188 8.51484C2.67188 10.1633 4.0957 11.1094 5.83594 11.1094H7.3125"
+                                                stroke="#B0B0B0" stroke-width="0.84375" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M7.3125 12.7994L9 14.4843L10.6875 12.7994" stroke="#B0B0B0"
+                                                stroke-width="0.84375" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M9 8.15625V14.0633" stroke="#B0B0B0" stroke-width="0.84375"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                    <button title="like playlist">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.6536 7.15238C11.8471 7.33832 12.1529 7.33832 12.3464 7.15238C13.1829 6.34871 14.326 5.75 15.6 5.75C18.1489 5.75 20.25 7.64769 20.25 10.0298C20.25 11.7261 19.4577 13.1809 18.348 14.428C17.2397 15.6736 15.7972 16.7316 14.4588 17.6376L12.1401 19.207C12.0555 19.2643 11.9445 19.2643 11.8599 19.207L9.54125 17.6376C8.20278 16.7316 6.76035 15.6736 5.65201 14.428C4.54225 13.1809 3.75 11.7261 3.75 10.0298C3.75 7.64769 5.85106 5.75 8.4 5.75C9.67403 5.75 10.8171 6.34871 11.6536 7.15238Z"
+                                                stroke="#C4C4C4" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                    <button class="shuffle" title="shuffle">
+                                        <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M17.142 0.353117C16.748 0.747117 16.748 1.38511 17.142 1.77911L18.109 2.74612H12.984C12.082 2.74612 11.26 3.26212 10.866 4.07312L10.584 4.65713C10.512 4.80513 10.512 4.97813 10.584 5.12613L11.348 6.70511C11.446 6.90711 11.734 6.90711 11.832 6.70511L12.681 4.95312C12.737 4.83712 12.855 4.76312 12.984 4.76312H18.109L17.142 5.73111C16.748 6.12411 16.748 6.76313 17.142 7.15613C17.536 7.55013 18.174 7.55013 18.568 7.15613L21.257 4.46811C21.65 4.07411 21.65 3.43511 21.257 3.04211L18.568 0.353117C18.174 -0.0408828 17.536 -0.0408828 17.142 0.353117Z"
+                                                fill="#44EBB9" />
+                                            <path
+                                                d="M8.48899 13.6071C8.56099 13.4591 8.56099 13.2861 8.48899 13.1381L7.72399 11.5591C7.62599 11.3571 7.33799 11.3571 7.23999 11.5591L6.39199 13.3121C6.33499 13.4281 6.21799 13.5021 6.08899 13.5021H1.72199C1.16499 13.5021 0.713989 13.9531 0.713989 14.5101C0.713989 15.0671 1.16499 15.5181 1.72199 15.5181H6.08899C6.99099 15.5181 7.81299 15.0031 8.20599 14.1911L8.48899 13.6071Z"
+                                                fill="#44EBB9" />
+                                            <path
+                                                d="M17.142 17.9121C16.748 17.5181 16.748 16.8791 17.142 16.4861L18.109 15.5181H12.984C12.082 15.5181 11.26 15.0031 10.866 14.1911L6.39199 4.95309C6.33499 4.83709 6.21799 4.76309 6.08899 4.76309H1.72199C1.16499 4.76309 0.713989 4.3121 0.713989 3.7551C0.713989 3.1981 1.16499 2.74609 1.72199 2.74609H6.08899C6.99099 2.74609 7.81299 3.26209 8.20599 4.07309L12.681 13.3121C12.737 13.4281 12.855 13.5021 12.984 13.5021H18.109L17.142 12.5341C16.748 12.1401 16.748 11.5021 17.142 11.1081C17.536 10.7141 18.174 10.7141 18.568 11.1081L21.257 13.7971C21.65 14.1911 21.65 14.8291 21.257 15.2231L18.568 17.9121C18.174 18.3051 17.536 18.3051 17.142 17.9121Z"
+                                                fill="#44EBB9" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button title="play">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="12" fill="#F3A22A" />
+                                        <rect width="16.8" height="16.8" transform="translate(3.59961 3.6001)"
+                                            fill="#F3A22A" />
+                                        <path
+                                            d="M17.0874 13.0614C17.7817 12.5242 17.7817 11.476 17.0874 10.9387C14.9891 9.31514 12.6461 8.03543 10.146 7.14749L9.68929 6.98528C8.8155 6.67494 7.89254 7.26613 7.77425 8.16812C7.44374 10.6883 7.44374 13.3119 7.77425 15.832C7.89254 16.734 8.8155 17.3252 9.68929 17.0148L10.146 16.8526C12.6461 15.9647 14.9891 14.685 17.0874 13.0614Z"
+                                            fill="white" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                </section>
+
+                <section class="stories">
+                    <% playlists.forEach(playlist=> { %>
+                        <% if (playlist.stories && playlist.stories.length> 0) { %>
+                            <!-- Check if the playlist has associated stories -->
+                            <ul class="stories-content">
+                                <%- include('./partials/playlist-story-item', {playlist:playlist}) %>
+                            </ul>
+                            <% } else { %>
+                                <p class="empty-state-text">No stories available.</p>
+                                <!-- If no stories are associated with the playlist -->
+                                <% } %>
+                                    <% }); %>
+                </section>
+
+        </main>
+
+
+        <%- include('./partials/foot') %>
