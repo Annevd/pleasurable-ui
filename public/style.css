@@ -71,7 +71,7 @@
 }
 
 /* --- Navigatie menu --- */
-
+/* 
 nav {
   display: flex;
   justify-content: center;
@@ -109,7 +109,7 @@ nav {
       }
     }
   }
-}
+} */
 
 .menu-open {
   top: 0rem;
@@ -119,14 +119,205 @@ nav {
   display: flex;
   align-items: center;
   position: fixed;
-  bottom: 2rem;
-  right: 1rem;
+  bottom: 4.5rem;
+  right: 2rem;
   appearance: none;
   border: none;
   padding: 0.75rem;
   border-radius: var(--radius-1);
   cursor: pointer;
 }
+
+nav.is-hover {
+  position: relative;
+  border: 1px solid red;
+  position: fixed;
+  bottom: 22rem;
+  right: 25rem;
+
+  &:before {
+    content: '';
+    width: 22rem;
+    height: 25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    background: red; // of transparent
+  }
+
+  ul {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+    background: none;
+    transition: none;
+    
+    li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      /* border: 1px solid blue; */
+      transition: all 0.3s;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        display: inline-block;
+        padding: 0.75rem;
+        border-radius: var(--radius-1);
+        margin-bottom: 0.25rem;
+      }
+
+      img {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      p {
+        font: 400 1rem var(--primary-font);
+        color: white;
+      }
+    }
+  }
+}
+
+nav.is-hover {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+}
+
+nav.is-hover:hover {
+  ul {
+      display: block;
+      position: relative;
+      z-index: 100;
+  }
+  
+   ul li {
+    opacity: 1;
+  }
+  
+  ul li:first-child {
+    top: -9rem;
+    /* left: -0.5rem; */
+  }
+  
+  ul li:nth-child(2) {
+    top: -11.5rem;
+    left: -4.75rem;
+  }
+  
+  ul li:nth-child(3) {
+    top: -9.5rem;
+    left: -10rem;
+  }
+  
+  ul li:nth-child(4) {
+    top: -3rem;
+    left: -9.5rem;
+  }
+
+  ul li:nth-child(5) {
+    top: -0.75rem;
+    left: -4.5rem;
+  }
+}
+
+
+/* .menu-button-container {
+  width: 15rem;
+  height: 15rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.menu-button-container:hover + .main-nav {
+
+  .menu-button {
+    position: fixed;
+    bottom: 5rem;
+  }
+ 
+  img {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
+  .menu li a {
+    padding: 0.75rem;
+  }
+  
+  .menu li:first-child a {
+    position: fixed;
+    right: 1rem;
+    bottom: 7rem;
+  }
+
+  .menu li:first-child(2) a {
+    position: fixed;
+    right: 3rem;
+    bottom: 6rem;
+  }
+  .menu li:first-child(3) a {
+    position: fixed;
+    right: 5rem;
+    bottom: 5rem;
+  }
+
+  .menu li:first-child(4) a {
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+  }
+  .menu li:first-child(5) a {
+    position: fixed;
+    right: 1rem;
+    bottom: 2rem;
+  }
+} */
+/* 
+.menu-hover {
+  position: fixed;
+  bottom: 5rem;
+}
+
+.menu-link-hover-1 {
+  position: fixed;
+  right: 1rem;
+  bottom: 7rem;
+}
+
+.menu-link-hover-2 {
+  position: fixed;
+  right: 3rem;
+  bottom: 6rem;
+}
+
+.menu-link-hover-3 {
+  position: fixed;
+  right: 5rem;
+  bottom: 5rem;
+}
+
+.menu-link-hover-4 {
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+}
+
+.menu-link-hover-5 {
+  position: fixed;
+  right: 1rem;
+  bottom: 2rem;
+} */
 
 .menu-button.menu {
   background: white;

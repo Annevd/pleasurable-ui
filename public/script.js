@@ -26,22 +26,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
 
-  openMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    navShown.classList.add("menu-open");
-    openMenuButton.classList.add("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "flex";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "0"));
-    firstMenuLink.focus();
-  });
+  // openMenuButton.addEventListener("click", function () {
+  //   document.documentElement.classList.add("no-scroll");
+  //   navShown.classList.add("menu-open");
+  //   openMenuButton.classList.add("hidden-menu");
+  //   document.querySelector(".menu-button.menu").style.display = "flex";
+  //   menuLinks.forEach((link) => link.setAttribute("tabindex", "0"));
+  //   firstMenuLink.focus();
+  // });
 
-  closeMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    navShown.classList.remove("menu-open");
-    openMenuButton.classList.remove("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "none";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-  });
+  // closeMenuButton.addEventListener("click", function () {
+  //   document.documentElement.classList.remove("no-scroll");
+  //   navShown.classList.remove("menu-open");
+  //   openMenuButton.classList.remove("hidden-menu");
+  //   document.querySelector(".menu-button.menu").style.display = "none";
+  //   menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
+  // });
 
   document.addEventListener("keydown", function (event) {
     if (navShown.classList.contains("menu-open")) {
