@@ -39,6 +39,12 @@ app.get("/", function (request, response) {
   response.render("index");
 });
 
+// Maak een GET route voor de testing pagina
+
+app.get("/testing", function (request, response) {
+  response.render("testing");
+});
+
 // Maak een GET route voor de lessons pagina
 
 app.get("/lessons", function (request, response) {
@@ -169,7 +175,7 @@ app.post("/lessons", function(request, response) {
 
 // Maak een GET route voor de stories pagina
 
-app.get("/lessons/stories", function (request, response) {
+app.get("/stories", function (request, response) {
   Promise.all([
     fetchJson(apiUrl + "/tm_story"),
     fetchJson(apiUrl + "/tm_language"),
@@ -187,7 +193,25 @@ app.get("/lessons/stories", function (request, response) {
 
 // Maak een GET route voor de playlist pagina
 
-app.get("/lessons/playlist/:slug", function (request, response) {
+app.get("/playlists", function (request, response) {
+  Promise.all([
+    fetchJson(apiUrl + "/tm_story"),
+    fetchJson(apiUrl + "/tm_language"),
+    fetchJson(apiUrl + "/tm_playlist"),
+    fetchJson(apiUrl + "/tm_audio"),
+  ]).then(([storyData, languageData, playlistData, audioData]) => {
+    response.render("playlists", {
+      stories: storyData.data,
+      languages: languageData.data,
+      playlists: playlistData.data,
+      audio: audioData.data,
+    });
+  });
+});
+
+// Maak een GET route voor de playlist pagina
+
+app.get("/playlist/:slug", function (request, response) {
   Promise.all([
     fetchJson(apiUrl + "/tm_story"),
     fetchJson(apiUrl + "/tm_language"),
@@ -203,6 +227,18 @@ app.get("/lessons/playlist/:slug", function (request, response) {
       audio: audioData.data,
     });
   });
+});
+
+// Maak een GET route voor de statistics pagina
+
+app.get("/statistics", function (request, response) {
+  response.render("statistics");
+});
+
+// Maak een GET route voor de profile pagina
+
+app.get("/profile", function (request, response) {
+  response.render("profile");
 });
 
 // 3. Start de webserver
