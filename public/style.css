@@ -7,6 +7,14 @@
   --primary-two: #fff9f9;
   --primary-three: #dadfe1;
 
+  --home: #54a9ce;
+  --lessons: #bf87fb;
+  --stories: #f787ec;
+  --playlists: #ff9089;
+  --profile: #f09c89;
+  --menu: #1C1C1C;
+  --menu-backdrop: #29292995;
+
   --grey: #787878;
   --green: #0d7131;
   --purple: #954be2;
@@ -29,4 +37,100 @@
   --space-small: 0.3rem;
   --space-big: 1.8rem;
   --space-third: 0.9rem;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--poppins);
+  margin: 0;
+  padding: 0;
+}
+
+header button {
+  background-color: var(--menu);
+  padding: var(--space-small);
+}
+
+nav {
+  /* display: none; */
+}
+
+nav ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-third);
+  width: fit-content;
+  padding: var(--space-small);
+}
+
+nav li {
+  width: 105px;
+  height: 105px;
+  list-style: none;
+  border-radius: 6px;
+  padding-top: var(--space-small);
+}
+
+nav li:last-of-type {
+}
+
+nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+nav a:visited {
+  color: var(--primary-one);
+}
+
+nav img {
+  width: 70px;
+  height: 70px;
+}
+
+nav .home {
+  background-color: var(--home);
+}
+
+nav .lessons {
+  background-color: var(--lessons);
+}
+
+nav .stories {
+  background-color: var(--stories);
+}
+
+nav .playlists {
+  background-color: var(--playlists);
+}
+
+nav .profile {
+  background-color: var(--profile);
+}
+
+.show {
+  display: block;
+}
+
+nav li:hover img {
+  animation: wobble 1s linear both infinite;
+  transition: all 0.2s ease-in-out;
+  scale: 1.05;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
 }

@@ -1,16 +1,36 @@
-<nav>
-    <ul>
-        <li>
-            <a href="/" <% if (current=='/' ) { %> class="active" <% } %>>Home</a>
+<button aria-label="menu button" class="menu-btn">
+    <img src="/assets/menu-bars.svg" alt="menu" width="25px" height="25px">
+</button>
+
+<nav class="menu">
+    <ul class="menu-list">
+        <li class="home">
+            <a href="/"  <% if (current=='/' ) { %> class="active" <% } %>>
+                    <img src="/assets/house.svg" alt="home">
+                    Home
+            </a>
         </li>
-        <li>
-            <a href="/stories" <% if (current=='/stories' ) { %> class="active"<% } %>>Stories</a>
+        <li class="lessons" >
+            <a href="/" <% if (current=='/lessons' ) { %> class="active" <% } %>>
+                    <img src="/assets/lessons.svg" alt="home">
+                    Lessons
+            </a>
         </li>
-        <li>
-            <a href="/playlists" <% if (current=='/playlists' ) { %> class="active"<% } %>>Playlists</a>
+        <li class="stories">
+            <a href="/stories" <% if (current=='/stories' ) { %> class="active"<% } %>>
+                    <img src="/assets/stories.svg" alt="stories">
+                    Stories
+            </a>
         </li>
-        <li>
-            <a href="/profile" <% if (current=='/profile' ) { %> class="active"<% } %>>Profile</a>
+        <li class="playlists">
+            <a href="/playlists" <% if (current=='/playlists' ) { %> class="active"<% } %>>
+                    <img src="/assets/playlists.svg" alt="playlists">
+                    Playlists</a>
+        </li>
+        <li class="profile" >
+            <a href="/profile" <% if (current=='/profile' ) { %> class="active"<% } %>>
+                    <img src="/assets/profile.svg" alt="profile">
+                    Profile</a>
         </li>
     </ul>
 </nav>
