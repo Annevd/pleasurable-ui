@@ -47,7 +47,7 @@
 }
 
 header button {
-  position: absolute;
+  position: fixed;
   display: grid;
   place-items: center;
   top: 5px;
@@ -58,29 +58,32 @@ header button {
   border: none;
   padding: var(--space-small);
   border-radius: 6px;
+  transition: all 0.25s ease-in-out;
 }
 
 nav {
   display: none;
-  position: absolute;
-  top: 60px;
+  position: fixed;
+  top: 0px;
   transition: all 0.3s ease-in-out;
 }
 
 nav ul {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-half);
-  width: fit-content;
-  padding: var(--space-small);
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
 }
 
 nav li {
-  width: 105px;
+  width: 100%;
   height: 105px;
   list-style: none;
-  border-radius: 6px;
   padding-top: var(--space-small);
+  transition: all 0.2s ease-in;
+}
+
+nav li:hover {
+  width: 120%;
 }
 
 nav a {
@@ -95,8 +98,8 @@ nav a:visited {
 }
 
 nav img {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 nav .home {
@@ -119,10 +122,6 @@ nav .profile {
   background-color: var(--profile);
 }
 
-.show {
-  display: block;
-}
-
 nav li:hover img {
   transition: all 0.2s ease-in-out;
   scale: 1.05;
@@ -142,17 +141,17 @@ svg .rect-three {
   transform-origin: left;
 }
 
-.cross-one {
+.cross .rect-one {
   transform: rotate(-45deg);
   translate: 5px -20px;
 }
 
-.cross-two {
+.cross .rect-three {
   transform: rotate(45deg);
   translate: 35px -55px;
 }
 
-.fade-rect {
+.cross .rect-two {
   opacity: 0;
   translate: -200px;
 }
@@ -168,7 +167,7 @@ nav {
 @keyframes show-menu {
   from {
     opacity: 0;
-    translate: -200px 0px;
+    translate: 0px -200px;
   }
   to {
     opacity: 1;
@@ -183,10 +182,10 @@ nav li:hover img {
 
 @keyframes wobble {
   from {
-    rotate: -5deg;
+    rotate: -2deg;
   }
   to {
-    rotate: 5deg;
+    rotate: 2deg;
   }
 }
 
@@ -195,6 +194,7 @@ nav img {
   animation: show-img 0.5s ease-out 1;
 }
 
+/* TODO commented out bc it also does this after hovering and idk how to remove it */
 /* @keyframes show-img {
   from {
     opacity: 0;
@@ -204,4 +204,58 @@ nav img {
     opacity: 1;
     scale: 1;
   }
-} */
+}  */
+
+/* toggle classes */
+
+.show {
+  display: block;
+}
+
+.move-btn {
+  translate: 0 110px;
+}
+
+@media (min-width: 420px) {
+  nav img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (min-width: 750px) {
+  nav {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    transition: all 0.3s ease-in-out;
+    height: 100vh;
+  }
+  
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 100vh;
+  }
+  
+  nav li {
+    display: grid;
+    place-items: center;
+    width: 105px;
+    height: 100%;
+    list-style: none;
+    padding-top: var(--space-small);
+    transition: all 0.2s ease-in;
+  }
+  
+  nav li:hover {
+    height: 120%;
+    width: 100%;
+  }
+
+  .move-btn {
+    translate: 110px 0;
+  }
+}
