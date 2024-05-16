@@ -64,19 +64,7 @@ nav {
   display: none;
   position: absolute;
   top: 60px;
-  animation: show-menu 0.3s ease-out;
   transition: all 0.3s ease-in-out;
-}
-
-@keyframes show-menu {
-  from {
-    opacity: 0;
-    translate: -200px 0px;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
 }
 
 nav ul {
@@ -109,19 +97,6 @@ nav a:visited {
 nav img {
   width: 70px;
   height: 70px;
-  animation: show-img 0.5s ease-out 0.05s;
-  animation: name duration timing-function delay iteration-count direction fill-mode;
-}
-
-@keyframes show-img {
-  from {
-    opacity: 0;
-    scale: 0.2;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
 }
 
 nav .home {
@@ -149,24 +124,8 @@ nav .profile {
 }
 
 nav li:hover img {
-  animation: wobble 1s linear both infinite;
   transition: all 0.2s ease-in-out;
   scale: 1.05;
-}
-
-@keyframes wobble {
-  0% {
-    transform: rotate(0);
-  }
-  25% {
-    transform: rotate(-5deg);
-  }
-  50% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
 }
 
 /* hamburger svg animation */
@@ -197,3 +156,52 @@ svg .rect-three {
   opacity: 0;
   translate: -200px;
 }
+
+/* animations  */
+
+/* nav show */
+
+nav {
+  animation: show-menu 0.3s ease-out;
+}
+
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    translate: -200px 0px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* menu list items hover anim for the images */
+nav li:hover img {
+  animation: wobble 1.5s ease-in-out alternate infinite;
+}
+
+@keyframes wobble {
+  from {
+    rotate: -5deg;
+  }
+  to {
+    rotate: 5deg;
+  }
+}
+
+/* menu list item icon anim for when it appears */
+nav img {
+  animation: show-img 0.5s ease-out 1;
+}
+
+/* @keyframes show-img {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+} */
