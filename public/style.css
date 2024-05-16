@@ -31,6 +31,7 @@
   --gradient-one: linear-gradient(#451971, #162152);
   --gradient-two: linear-gradient(#471871, #040404);
   --gradient-three: linear-gradient(#3f93b7, #1c5872);
+  --gradient-four: linear-gradient(#954be2, #471871);
 
   --space-reg: 1.2rem;
   --space-half: 0.6rem;
@@ -58,7 +59,7 @@ header button {
   border: none;
   padding: var(--space-small);
   border-radius: 6px;
-  transition: all 0.25s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 nav {
@@ -81,7 +82,7 @@ nav li {
   height: 105px;
   list-style: none;
   padding-top: var(--space-small);
-  transition: all 0.2s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 nav li:hover {
@@ -198,7 +199,7 @@ nav img {
 }
 
 /* TODO commented out bc it also does this after hovering and idk how to remove it */
-@keyframes show-img {
+/* @keyframes show-img {
   from {
     opacity: 0;
     scale: 0.1;
@@ -207,7 +208,7 @@ nav img {
     opacity: 1;
     scale: 1;
   }
-} 
+}  */
 
 /* toggle classes */
 
@@ -220,11 +221,10 @@ nav img {
 }
 
 @media (min-width: 360px) {
-nav a {
-  font-size: 1rem;
+  nav a {
+    font-size: 1rem;
+  }
 }
-}
-
 
 @media (min-width: 420px) {
   nav img {
@@ -242,28 +242,46 @@ nav a {
     transition: all 0.3s ease-in-out;
     height: 100vh;
   }
-  
+
   nav ul {
     display: flex;
     flex-direction: column;
     width: fit-content;
     height: 100vh;
   }
-  
+
   nav li {
-    width: 105px;
+    width: 150px;
     height: 100%;
     list-style: none;
     padding-top: var(--space-small);
     transition: all 0.2s ease-in;
   }
-  
+
   nav li:hover {
     height: 120%;
     width: 100%;
   }
 
   .move-btn {
-    translate: 110px 0;
+    translate: 160px 0;
   }
+}
+
+/* general styling pages */
+
+body {
+  display: grid;
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--gradient-four);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main {
+  place-self: center;
+  min-height: 100vh;
+  width: 80%;
 }

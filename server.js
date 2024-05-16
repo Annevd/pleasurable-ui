@@ -39,11 +39,6 @@ app.get("/", function (request, response) {
   response.render("index");
 });
 
-// Maak een GET route voor de testing pagina
-
-app.get("/testing", function (request, response) {
-  response.render("testing");
-});
 
 // Maak een GET route voor de lessons pagina
 
