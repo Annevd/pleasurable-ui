@@ -70,288 +70,6 @@
   overflow: hidden;
 }
 
-/* --- Navigatie menu --- */
-/* 
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: var(--menu-layover);
-  position: fixed;
-  top: -100%;
-  width: 100%;
-  transition: var(--transition-1);
-  z-index: 100;
-
-  & ul {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 3rem;
-
-    & li {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      & > a {
-        display: inline-block;
-        padding: 1.5rem;
-        border-radius: var(--radius-1);
-        margin-bottom: 0.25rem;
-      }
-
-      & > p {
-        font: 400 1rem var(--primary-font);
-        color: white;
-      }
-    }
-  }
-} */
-
-.menu-open {
-  top: 0rem;
-}
-
-.menu-button {
-  display: flex;
-  align-items: center;
-  position: fixed;
-  bottom: 4.5rem;
-  right: 2rem;
-  appearance: none;
-  border: none;
-  padding: 0.75rem;
-  border-radius: var(--radius-1);
-  cursor: pointer;
-}
-
-nav.is-hover {
-  position: relative;
-  border: 1px solid red;
-  position: fixed;
-  bottom: 22rem;
-  right: 25rem;
-
-  &:before {
-    content: '';
-    width: 22rem;
-    height: 25rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    background: red; // of transparent
-  }
-
-  ul {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: auto;
-    background: none;
-    transition: none;
-    
-    li {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      /* border: 1px solid blue; */
-      transition: all 0.3s;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      a {
-        display: inline-block;
-        padding: 0.75rem;
-        border-radius: var(--radius-1);
-        margin-bottom: 0.25rem;
-      }
-
-      img {
-        height: 2rem;
-        width: 2rem;
-      }
-
-      p {
-        font: 400 1rem var(--primary-font);
-        color: white;
-      }
-    }
-  }
-}
-
-nav.is-hover {
-  position: fixed;
-  bottom: 5rem;
-  right: 5rem;
-}
-
-nav.is-hover:hover {
-  ul {
-      display: block;
-      position: relative;
-      z-index: 100;
-  }
-  
-   ul li {
-    opacity: 1;
-  }
-  
-  ul li:first-child {
-    top: -9rem;
-    /* left: -0.5rem; */
-  }
-  
-  ul li:nth-child(2) {
-    top: -11.5rem;
-    left: -4.75rem;
-  }
-  
-  ul li:nth-child(3) {
-    top: -9.5rem;
-    left: -10rem;
-  }
-  
-  ul li:nth-child(4) {
-    top: -3rem;
-    left: -9.5rem;
-  }
-
-  ul li:nth-child(5) {
-    top: -0.75rem;
-    left: -4.5rem;
-  }
-}
-
-
-/* .menu-button-container {
-  width: 15rem;
-  height: 15rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-.menu-button-container:hover + .main-nav {
-
-  .menu-button {
-    position: fixed;
-    bottom: 5rem;
-  }
- 
-  img {
-    height: 1.75rem;
-    width: 1.75rem;
-  }
-
-  .menu li a {
-    padding: 0.75rem;
-  }
-  
-  .menu li:first-child a {
-    position: fixed;
-    right: 1rem;
-    bottom: 7rem;
-  }
-
-  .menu li:first-child(2) a {
-    position: fixed;
-    right: 3rem;
-    bottom: 6rem;
-  }
-  .menu li:first-child(3) a {
-    position: fixed;
-    right: 5rem;
-    bottom: 5rem;
-  }
-
-  .menu li:first-child(4) a {
-    position: fixed;
-    right: 3rem;
-    bottom: 3rem;
-  }
-  .menu li:first-child(5) a {
-    position: fixed;
-    right: 1rem;
-    bottom: 2rem;
-  }
-} */
-/* 
-.menu-hover {
-  position: fixed;
-  bottom: 5rem;
-}
-
-.menu-link-hover-1 {
-  position: fixed;
-  right: 1rem;
-  bottom: 7rem;
-}
-
-.menu-link-hover-2 {
-  position: fixed;
-  right: 3rem;
-  bottom: 6rem;
-}
-
-.menu-link-hover-3 {
-  position: fixed;
-  right: 5rem;
-  bottom: 5rem;
-}
-
-.menu-link-hover-4 {
-  position: fixed;
-  right: 3rem;
-  bottom: 3rem;
-}
-
-.menu-link-hover-5 {
-  position: fixed;
-  right: 1rem;
-  bottom: 2rem;
-} */
-
-.menu-button.menu {
-  background: white;
-  display: none;
-}
-
-.menu-button.home {
-  background: var(--menu-layover);
-}
-
-.hidden-menu {
-  display: none;
-}
-
-.menu li:first-child a {
-  background: var(--menu-1);
-}
-
-.menu li:nth-child(2) a {
-  background: var(--menu-2);
-}
-
-.menu li:nth-child(3) a {
-  background: var(--menu-3);
-}
-
-.menu li:nth-child(4) a {
-  background: var(--menu-4);
-}
-
-.menu li:nth-child(5) a {
-  background: var(--menu-5);
-}
-
 /* --- Algemene styling --- */
 
 html {
@@ -416,6 +134,175 @@ section {
 .empty-state-text {
   color: white;
 }
+
+/* --- Navigatie menu --- */
+
+nav {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  z-index: 100;
+
+  ul {
+    position: relative;
+    bottom: 4.5rem;
+    right: 2rem;
+    height: auto;
+    background: none;
+    transition: none;
+    
+    li {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      opacity: 0;
+      transition: all 0.3s;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        display: inline-block;
+        padding: 0.75rem;
+        border-radius: var(--radius-1);
+        margin-bottom: 0.25rem;
+      }
+
+      img {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      p {
+        font: 400 1rem var(--primary-font);
+        color: white;
+      }
+    }
+  }
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 4.5rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  appearance: none;
+  border: none;
+  background-color: var(--menu-layover);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+}
+
+.menu-button span {
+	position:absolute;
+  width:1.5em;
+	height:.2em;
+	border-radius: var(--radius-2);
+  background-color:white;
+	transition:.3s;
+}
+
+.menu-button span:nth-of-type(1) {
+	transform:translateY(-.6em);
+}
+
+.menu-button span:nth-of-type(3) {
+	transform:translateY(.6em);
+}
+
+.menu-open { 
+  ul {
+      display: block;
+      position: relative;
+  }
+  
+   ul li {
+    opacity: 1;
+  }
+  
+  ul li:first-child {
+    top: -4.5rem;
+    left: 2rem;
+  }
+  
+  ul li:nth-child(2) {
+    top: -7.25rem;
+    left: -3.25rem;
+  }
+  
+  ul li:nth-child(3) {
+    top: -4.5rem;
+    left: -8.5rem;
+  }
+  
+  ul li:nth-child(4) {
+    top: 1.75rem;
+    left: -8.5rem;
+  }
+
+  ul li:nth-child(5) {
+    top: 3.5rem;
+    left: -3.25rem;
+  }
+
+  &::before {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20rem;
+    height: 20rem;
+    background: var(--menu-layover); 
+    border-top-left-radius: 70%;
+  }
+
+  .menu-button {
+    background: white;
+
+    span {
+      background: var(--menu-layover);
+    }
+  }
+
+  .menu-button span:nth-of-type(1) {
+    transform:rotate(45deg) scaleX(1.2);
+  }
+
+  .menu-button span:nth-of-type(2) {
+    transform:scaleX(0);
+  }
+  
+  .menu-button span:nth-of-type(3) {
+    transform:rotate(-45deg) scaleX(1.2);
+  }  
+}
+
+.menu li:first-child a {
+  background: var(--menu-1);
+}
+
+.menu li:nth-child(2) a {
+  background: var(--menu-2);
+}
+
+.menu li:nth-child(3) a {
+  background: var(--menu-3);
+}
+
+.menu li:nth-child(4) a {
+  background: var(--menu-4);
+}
+
+.menu li:nth-child(5) a {
+  background: var(--menu-5);
+}
+
 
 /* Algemene styling settings */
 
@@ -815,17 +702,6 @@ section {
   .suggested-playlists ul::-webkit-scrollbar {
     display: none;
   }
-
-  /* .liked-playlists .empty-state {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem var(--spacing);
-    border-radius: var(--radius-2);
-    width: 10rem;
-    height: 249px;
-    color: white;
-    background: var(--skeleton);
-  } */
 
   .empty-state {
     display: flex;
@@ -1231,6 +1107,12 @@ section {
   border: 5px solid white;
 }
 
+nav li:hover {
+  /* scale: 1.15; */
+  filter: saturate(200%);
+  animation: pulse 0.5s infinite ease-out alternate;
+}
+
 .pagination button:hover,
 .pagination button:hover path {
   background: white;
@@ -1250,6 +1132,11 @@ section {
   fill: red;
   stroke: red;
   opacity: 50%;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
 }
 
 /* Media queries */

@@ -1,11 +1,11 @@
 // Variable Declarations
 
-const openMenuButton = document.querySelector(".menu-button.home");
-const closeMenuButton = document.querySelector(".menu-button.menu");
-const navShown = document.querySelector("nav");
+const menuButton = document.querySelector(".menu-button");
+const nav = document.querySelector("nav");
 const menuLinks = document.querySelectorAll(".menu a");
 const firstMenuLink = menuLinks[0];
 const lastMenuLink = menuLinks[menuLinks.length - 1];
+let isOpen = false; // Initially, the menu is closed
 
 const prevButton = document.querySelector(".pagination button:first-of-type");
 const nextButton = document.querySelector(".pagination button:nth-of-type(2)");
@@ -24,48 +24,43 @@ const settingsShown = document.querySelector(".playlist-settings-container");
 document.addEventListener("DOMContentLoaded", function () {
   // Menu
 
+  nav.classList.remove('menu-open')
+
   menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
 
-  // openMenuButton.addEventListener("click", function () {
-  //   document.documentElement.classList.add("no-scroll");
-  //   navShown.classList.add("menu-open");
-  //   openMenuButton.classList.add("hidden-menu");
-  //   document.querySelector(".menu-button.menu").style.display = "flex";
-  //   menuLinks.forEach((link) => link.setAttribute("tabindex", "0"));
-  //   firstMenuLink.focus();
-  // });
-
-  // closeMenuButton.addEventListener("click", function () {
-  //   document.documentElement.classList.remove("no-scroll");
-  //   navShown.classList.remove("menu-open");
-  //   openMenuButton.classList.remove("hidden-menu");
-  //   document.querySelector(".menu-button.menu").style.display = "none";
-  //   menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-  // });
-
-  document.addEventListener("keydown", function (event) {
-    if (navShown.classList.contains("menu-open")) {
-      const isTabPressed = event.key === "Tab";
-      if (isTabPressed) {
-        if (event.shiftKey && document.activeElement === firstMenuLink) {
-          event.preventDefault();
-          closeMenuButton.focus();
-        } else if (
-          !event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          firstMenuLink.focus();
-        } else if (
-          event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          lastMenuLink.focus();
+    menuButton.addEventListener("click", function () {
+        nav.classList.toggle("menu-open");
+        isOpen = !isOpen; // Toggle the menu state
+        menuLinks.forEach((link) => link.setAttribute("tabindex", isOpen ? "0" : "-1"));
+        if (isOpen) {
+            firstMenuLink.focus();
         }
-      }
-    }
-  });
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (isOpen) {
+            const isTabPressed = event.key === "Tab";
+            if (isTabPressed) {
+                if (event.shiftKey && document.activeElement === firstMenuLink) {
+                    event.preventDefault();
+                    openMenuButton.focus();
+                } else if (
+                    !event.shiftKey &&
+                    document.activeElement === menuButton
+                ) {
+                    event.preventDefault();
+                    firstMenuLink.focus();
+                } else if (
+                    event.shiftKey &&
+                    document.activeElement === menuButton
+                ) {
+                    event.preventDefault();
+                    lastMenuLink.focus();
+                }
+            }
+        }
+    });
+
 
   // Carrousel
   if (carrousel) {

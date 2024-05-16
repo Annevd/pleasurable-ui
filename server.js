@@ -48,6 +48,7 @@ app.get("/testing", function (request, response) {
 // Maak een GET route voor de lessons pagina
 
 app.get("/lessons", function (request, response) {
+  
   Promise.all([
     // Fetch data from all endpoints concurrently using Promise.all()
     fetchJson(apiUrl + "/tm_story"),
