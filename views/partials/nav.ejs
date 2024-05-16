@@ -1,16 +1,20 @@
 <button aria-label="menu button" class="menu-btn">
-    <img src="/assets/menu-bars.svg" alt="menu" width="30px" height="30px">
+    <svg viewBox="0 0 100 80" width="40" height="40" class="hamburger">
+            <rect class="rect-one" width="90" height="14" rx="8" fill="#fff"></rect>
+            <rect class="rect-two" y="30" width="90" height="14" rx="8" fill="#fff"></rect>
+            <rect class="rect-three" y="60" width="90" height="14" rx="8" fill="#fff"></rect>
+    </svg>
 </button>
 
 <nav class="menu">
     <ul class="menu-list">
         <li class="home">
-            <a href="/"  <% if (current=='/' ) { %> class="active" <% } %>>
+            <a href="/" <% if (current=='/' ) { %> class="active" <% } %>>
                     <img src="/assets/house.svg" alt="home">
                     Home
             </a>
         </li>
-        <li class="lessons" >
+        <li class="lessons">
             <a href="/" <% if (current=='/lessons' ) { %> class="active" <% } %>>
                     <img src="/assets/lessons.svg" alt="home">
                     Lessons
@@ -27,7 +31,7 @@
                     <img src="/assets/playlists.svg" alt="playlists">
                     Playlists</a>
         </li>
-        <li class="profile" >
+        <li class="profile">
             <a href="/profile" <% if (current=='/profile' ) { %> class="active"<% } %>>
                     <img src="/assets/profile.svg" alt="profile">
                     Profile</a>
