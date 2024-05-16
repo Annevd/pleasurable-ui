@@ -47,18 +47,27 @@
 }
 
 header button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 50px;
+  width: 50px;
   background-color: var(--menu);
   padding: var(--space-small);
+  border: none;
+  border-radius: 6px;
 }
 
 nav {
-  /* display: none; */
+  display: none;
+  position: absolute;
+  top: 60px;
 }
 
 nav ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-third);
+  gap: var(--space-half);
   width: fit-content;
   padding: var(--space-small);
 }
@@ -69,9 +78,6 @@ nav li {
   list-style: none;
   border-radius: 6px;
   padding-top: var(--space-small);
-}
-
-nav li:last-of-type {
 }
 
 nav a {
