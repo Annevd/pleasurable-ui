@@ -169,6 +169,35 @@ input {
   background: var(--menu-5);
 }
 
+/* hamburger svg animation */
+
+.hamburger rect {
+  transition: all 0.25s ease-in-out;
+}
+
+svg .rect-one {
+  transform-origin: right;
+}
+
+svg .rect-three {
+  transform-origin: left;
+}
+
+.cross .rect-one {
+  transform: rotate(-45deg);
+  translate: 5px -20px;
+}
+
+.cross .rect-three {
+  transform: rotate(45deg);
+  translate: 35px -55px;
+}
+
+.cross .rect-two {
+  opacity: 0;
+  translate: -200px;
+}
+
 /* --- Algemene styling --- */
 
 html {

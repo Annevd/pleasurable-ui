@@ -139,3 +139,11 @@ if (openSettingsButton) {
     settingsShown.classList.remove("open-settings");
   });
 }
+
+// nav menu hamburger icon animation script
+
+const menuBtn = document.querySelector(".hamburger")
+
+menuBtn.addEventListener("click", function() {
+  menuBtn.classList.toggle("cross")
+})
