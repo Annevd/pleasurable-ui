@@ -73,7 +73,7 @@
 /* --- Navigatie menu --- */
 
 nav {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -113,13 +113,9 @@ nav {
   }
 }
 
-input {
-  display: none;
-}
-
-#active:checked ~ nav {
+/* #active:checked ~ nav {
   clip-path: circle(75%);
-}
+} */
 
 .menu-button {
   display: flex;
@@ -195,7 +191,7 @@ svg .rect-three {
 }
 
 .show-menu {
-  display: block;
+  clip-path: circle(75%);
 }
 
 /* --- Algemene styling --- */
