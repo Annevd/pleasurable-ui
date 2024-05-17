@@ -73,7 +73,7 @@
 /* --- Navigatie menu --- */
 
 nav {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -145,10 +145,6 @@ input {
   background: var(--menu-layover);
 }
 
-.hidden-menu {
-  display: none;
-}
-
 .menu li:first-child a {
   background: var(--menu-1);
 }
@@ -185,17 +181,21 @@ svg .rect-three {
 
 .cross .rect-one {
   transform: rotate(-45deg);
-  translate: 5px -20px;
+  translate: 15px -20px;
 }
 
 .cross .rect-three {
   transform: rotate(45deg);
-  translate: 35px -55px;
+  translate: 38px -52px;
 }
 
 .cross .rect-two {
   opacity: 0;
   translate: -200px;
+}
+
+.show-menu {
+  display: block;
 }
 
 /* --- Algemene styling --- */

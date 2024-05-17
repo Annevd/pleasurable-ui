@@ -1,52 +1,42 @@
-<input type="checkbox" id="active">
-
-<label for="active" title="open menu" class="menu-button home hamburger" tabindex="0">
+<button for="active" title="open menu" class="menu-button home hamburger" tabindex="0">
     <svg viewBox="0 0 100 80" width="40" height="40" class="hamburger">
         <rect class="rect-one" width="85" height="12" rx="8" fill="#fff"></rect>
         <rect class="rect-two" y="30" width="85" height="12" rx="8" fill="#fff"></rect>
         <rect class="rect-three" y="60" width="85" height="12" rx="8" fill="#fff"></rect>
     </svg>
-</label>
+</button>
 
-<nav>
+<nav class="nav-menu">
     <ul class="menu">
         <li>
-            <a href="/" aria-label="Go to home"<%- current == '/'?' class=\"active\"':'' %>>
+            <a href="/" aria-label="Go to home" <%- current=='/' ?' class=\"active\"':'' %>>
                 <img src="/assets/home.svg" alt="">
             </a>
             <p>Home</p>
         </li>
         <li>
-            <a href="/testing" aria-label="Go to testing"<%- current == '/testing'?' class=\"active\"':'' %>>
+            <a href="/testing" aria-label="Go to testing" <%- current=='/testing' ?' class=\"active\"':'' %>>
                 <img src="/assets/testing.svg" alt="">
             </a>
             <p>Testing</p>
         </li>
         <li>
-            <a href="/lessons" aria-label="Go to lessons"<%- current == '/lessons'?' class=\"active\"':'' %>>
-                <img src="/assets/book-outline.svg" alt="">                  
+            <a href="/lessons" aria-label="Go to lessons" <%- current=='/lessons' ?' class=\"active\"':'' %>>
+                <img src="/assets/book-outline.svg" alt="">
             </a>
-            <p>Lessons</p> 
+            <p>Lessons</p>
         </li>
         <li>
-            <a href="/statistics" aria-label="Go to statistics"<%- current == '/statistics'?' class=\"active\"':'' %>>
-                <img src="/assets/bar-chart-outline.svg" alt="">     
+            <a href="/statistics" aria-label="Go to statistics" <%- current=='/statistics' ?' class=\"active\"':'' %>>
+                <img src="/assets/bar-chart-outline.svg" alt="">
             </a>
             <p>Statistics</p>
         </li>
         <li>
-            <a href="/profile" aria-label="Go to profile"<%- current == '/profile'?' class=\"active\"':'' %>>
-                <img src="/assets/person-outline.svg" alt="">                
+            <a href="/profile" aria-label="Go to profile" <%- current=='/profile' ?' class=\"active\"':'' %>>
+                <img src="/assets/person-outline.svg" alt="">
             </a>
             <p>Profile</p>
-        </li>   
+        </li>
     </ul>
-
-    <label for="active" title="close menu" class="menu-button menu">
-        <svg viewBox="0 0 100 80" width="40" height="40" class="hamburger">
-            <rect class="rect-one" width="85" height="12" rx="8" fill="#fff"></rect>
-            <rect class="rect-two" y="30" width="85" height="12" rx="8" fill="#fff"></rect>
-            <rect class="rect-three" y="60" width="85" height="12" rx="8" fill="#fff"></rect>
-        </svg>
-    </label>
 </nav>
