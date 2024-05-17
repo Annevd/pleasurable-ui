@@ -40,12 +40,32 @@
   --space-third: 0.9rem;
 }
 
+/* general styling pages */
+
 * {
   box-sizing: border-box;
   font-family: var(--poppins);
   margin: 0;
   padding: 0;
 }
+
+body {
+  display: grid;
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--gradient-four);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main {
+  place-self: center;
+  min-height: 100vh;
+  width: 80%;
+}
+
+/* nav styling */
 
 header button {
   position: fixed;
@@ -95,6 +115,7 @@ nav a {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 
 nav a:visited {
@@ -160,9 +181,7 @@ svg .rect-three {
   translate: -200px;
 }
 
-/* animations  */
-
-/* nav show */
+/* ANIMATIONS */
 
 nav {
   animation: show-menu 0.3s ease-out;
@@ -220,6 +239,8 @@ nav img {
   translate: 0 110px;
 }
 
+/* media querys */
+
 @media (min-width: 360px) {
   nav a {
     font-size: 1rem;
@@ -263,25 +284,11 @@ nav img {
     width: 100%;
   }
 
+  nav li:active a {
+    scale: 0.9;
+  }
+
   .move-btn {
     translate: 160px 0;
   }
-}
-
-/* general styling pages */
-
-body {
-  display: grid;
-  width: 100vw;
-  min-height: 100vh;
-  background: var(--gradient-four);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-main {
-  place-self: center;
-  min-height: 100vh;
-  width: 80%;
 }
