@@ -73,15 +73,6 @@
 /* --- Navigatie menu --- */
 
 nav {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: var(--menu-layover);
-  position: fixed;
-  top: -100%;
-  width: 100%;
-  transition: var(--transition-1); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,8 +83,8 @@ nav {
   width: 100%;
   background-color: var(--menu-layover);
   z-index: 100;
-  clip-path: circle(0rem at calc(100% - 3rem) calc(100% - 3rem));
-  transition: all 0.5s ease-in-out;
+  clip-path: circle(0rem at calc(100% - 2rem) calc(100% - 3rem));
+  transition: clip-path 0.5s ease-in-out;
 
   & ul {
     display: grid;
@@ -129,10 +120,6 @@ input {
 #active:checked ~ nav {
   clip-path: circle(75%);
 }
-
-/* .menu-open {
-  top: 0rem;
-} */
 
 .menu-button {
   display: flex;
