@@ -113,13 +113,9 @@ nav {
   }
 }
 
-input {
-  display: none;
-}
-
-#active:checked ~ nav {
+/* #active:checked ~ nav {
   clip-path: circle(75%);
-}
+} */
 
 .menu-button {
   display: flex;
@@ -145,10 +141,6 @@ input {
   background: var(--menu-layover);
 }
 
-.hidden-menu {
-  display: none;
-}
-
 .menu li:first-child a {
   background: var(--menu-1);
 }
@@ -167,6 +159,39 @@ input {
 
 .menu li:nth-child(5) a {
   background: var(--menu-5);
+}
+
+/* hamburger svg animation */
+
+.hamburger rect {
+  transition: all 0.25s ease-in-out;
+}
+
+svg .rect-one {
+  transform-origin: right;
+}
+
+svg .rect-three {
+  transform-origin: left;
+}
+
+.cross .rect-one {
+  transform: rotate(-45deg);
+  translate: 15px -20px;
+}
+
+.cross .rect-three {
+  transform: rotate(45deg);
+  translate: 38px -52px;
+}
+
+.cross .rect-two {
+  opacity: 0;
+  translate: -200px;
+}
+
+.show-menu {
+  clip-path: circle(75%);
 }
 
 /* --- Algemene styling --- */
