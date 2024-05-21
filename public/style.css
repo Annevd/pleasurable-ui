@@ -76,13 +76,15 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background: var(--menu-layover);
   position: fixed;
-  top: -100%;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  transition: var(--transition-1);
+  background-color: var(--menu-layover);
   z-index: 100;
+  clip-path: circle(0rem at calc(100% - 2rem) calc(100% - 3rem));
+  transition: clip-path 0.5s ease-in-out;
 
   & ul {
     display: grid;
@@ -111,9 +113,9 @@ nav {
   }
 }
 
-.menu-open {
-  top: 0rem;
-}
+/* #active:checked ~ nav {
+  clip-path: circle(75%);
+} */
 
 .menu-button {
   display: flex;
@@ -124,21 +126,19 @@ nav {
   appearance: none;
   border: none;
   padding: 0.75rem;
-  border-radius: var(--radius-1);
+  /* border-radius: var(--radius-1); */
+  border-radius: 50%;
   cursor: pointer;
+  z-index: 101;
 }
 
 .menu-button.menu {
-  background: white;
+  /* background: white; */
   display: none;
 }
 
 .menu-button.home {
   background: var(--menu-layover);
-}
-
-.hidden-menu {
-  display: none;
 }
 
 .menu li:first-child a {
@@ -159,6 +159,39 @@ nav {
 
 .menu li:nth-child(5) a {
   background: var(--menu-5);
+}
+
+/* hamburger svg animation */
+
+.hamburger rect {
+  transition: all 0.25s ease-in-out;
+}
+
+svg .rect-one {
+  transform-origin: right;
+}
+
+svg .rect-three {
+  transform-origin: left;
+}
+
+.cross .rect-one {
+  transform: rotate(-45deg);
+  translate: 15px -20px;
+}
+
+.cross .rect-three {
+  transform: rotate(45deg);
+  translate: 38px -52px;
+}
+
+.cross .rect-two {
+  opacity: 0;
+  translate: -200px;
+}
+
+.show-menu {
+  clip-path: circle(75%);
 }
 
 /* --- Algemene styling --- */
