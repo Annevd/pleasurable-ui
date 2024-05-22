@@ -1,11 +1,7 @@
 // Variable Declarations
-
-const openMenuButton = document.querySelector(".menu-button.home");
-const closeMenuButton = document.querySelector(".menu-button.menu");
-const navShown = document.querySelector("nav");
-const menuLinks = document.querySelectorAll(".menu a");
-const firstMenuLink = menuLinks[0];
-const lastMenuLink = menuLinks[menuLinks.length - 1];
+const menuBtn = document.querySelector(".hamburger")
+const menuNav = document.querySelector(".nav-menu")
+const hartje = document.querySelector(".heart");
 
 const prevButton = document.querySelector(".pagination button:first-of-type");
 const nextButton = document.querySelector(".pagination button:nth-of-type(2)");
@@ -47,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
 
       loader.classList.add("show");
+      // likeAlert.add.classList('heart-moved')
 
       let data = new FormData(this);
 
@@ -80,25 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-});
-
-// Settings
-
-if (openSettingsButton) {
-  openSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    settingsShown.classList.add("open-settings");
-  });
-  
-  closeSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    settingsShown.classList.remove("open-settings");
-  });
-}
-
-// menu
-
-document.addEventListener('DOMContentLoaded', () => {
   const menuButton = document.querySelector('.menu-button');
   const navMenu = document.querySelector('.nav-menu');
   const menuLinks = navMenu.querySelectorAll('.menu a');
@@ -150,12 +128,47 @@ document.addEventListener('DOMContentLoaded', () => {
           menuButton.focus();
       }
   });
+
+  let tlLiefde = gsap.timeline();
+
+  tlLiefde
+  .from(hartje, {
+    duration:.6,
+    opacity:0,
+  })
+  .from(hartje, {
+    duration:.8,
+    y:"-8em",
+    scale:3,
+    ease: "power2.in",
+  }, "<")
+  .to(menuBtn, {
+    duration:.1,
+    y:"0.3em",
+  }, "-=.2")
+  .to(menuBtn, {
+    duration:1.5,
+    y:"0em",
+    ease: "elastic.out(1,0.3)",
+  });
+
 });
 
-// nav menu hamburger icon animation script
+// Settings
 
-const menuBtn = document.querySelector(".hamburger")
-const menuNav = document.querySelector(".nav-menu")
+if (openSettingsButton) {
+  openSettingsButton.addEventListener("click", function () {
+    document.documentElement.classList.add("no-scroll");
+    settingsShown.classList.add("open-settings");
+  });
+  
+  closeSettingsButton.addEventListener("click", function () {
+    document.documentElement.classList.remove("no-scroll");
+    settingsShown.classList.remove("open-settings");
+  });
+}
+
+// nav menu hamburger icon animation script
 
 menuBtn.addEventListener("click", function() {
   menuBtn.classList.toggle("cross")

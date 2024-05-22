@@ -113,10 +113,6 @@ nav {
   }
 }
 
-/* #active:checked ~ nav {
-  clip-path: circle(75%);
-} */
-
 .menu-button {
   display: flex;
   align-items: center;
@@ -130,11 +126,6 @@ nav {
   border-radius: 50%;
   cursor: pointer;
   z-index: 101;
-}
-
-.menu-button.menu {
-  /* background: white; */
-  display: none;
 }
 
 .menu-button.home {
@@ -193,6 +184,44 @@ svg .rect-three {
 .show-menu {
   clip-path: circle(75%);
 }
+
+.heart {
+  position: absolute;
+  right: -0.2rem;
+  bottom: 2.5rem;
+  pointer-events: none;
+  z-index: 101;
+}
+
+/* @keyframes scaleRotateIn {
+  0% {
+    transform: scale(0.5) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleRotateOut {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+::view-transition-old(.liked-playlists .playlist) {
+  animation: scaleRotateOut 0.5s forwards;
+}
+
+::view-transition-new(.liked-playlists .playlist) {
+  animation: scaleRotateIn 0.5s forwards;
+} */
 
 /* --- Algemene styling --- */
 
