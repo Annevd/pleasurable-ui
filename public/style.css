@@ -794,6 +794,25 @@ section {
   }
 }
 
+@keyframes background {
+  0% {
+    background-position: left;
+  }
+  15% {
+    background-position: right;
+  }
+  20% {
+    background-position: right;
+  }
+  40% {
+    background-position: left;
+  }
+  100% {
+    background-position: left;
+  }
+}
+
+
 /*█████  ██      ██          ███████ ████████  ██████  ██████  ██ ███████ ███████ 
  ██   ██ ██      ██          ██         ██    ██    ██ ██   ██ ██ ██      ██      
  ███████ ██      ██          ███████    ██    ██    ██ ██████  ██ █████   ███████ 
