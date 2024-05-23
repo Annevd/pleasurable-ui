@@ -16,7 +16,7 @@
 
   /* ------ Transitions ------ */
   --transition-1: 0.25s ease-in-out;
-  --easing: cubic-bezier(.7,0,.3,1);
+  --easing: cubic-bezier(0.7, 0, 0.3, 1);
 
   /* ------ Fonts ------ */
   --primary-font: "Poppins", sans-serif;
@@ -165,6 +165,58 @@ nav {
 
 .menu li:nth-child(5) a {
   background: var(--menu-5);
+}
+
+.menu li {
+  transition: all 0.2s ease;
+  & img {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.menu li:hover {
+  filter: saturate(2);
+  scale: 1.01;
+  & img {
+    animation: wobble 2.5s ease-out infinite;
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    rotate: -3deg;
+  }
+
+  20%,
+  40%,
+  60% {
+    rotate: 3deg;
+  }
+
+  80% {
+    rotate: -1deg;
+  }
+
+  90% {
+    rotate: 1deg;
+  }
+}
+
+.menu li:active {
+  filter: saturate(3);
+  scale: 0.9;
+
+  & img {
+    animation: none;
+  }
 }
 
 /* hamburger svg animation */
@@ -811,7 +863,6 @@ section {
     background-position: left;
   }
 }
-
 
 /*█████  ██      ██          ███████ ████████  ██████  ██████  ██ ███████ ███████ 
  ██   ██ ██      ██          ██         ██    ██    ██ ██   ██ ██ ██      ██      

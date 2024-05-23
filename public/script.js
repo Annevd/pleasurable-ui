@@ -156,31 +156,15 @@ menuBtn.addEventListener("click", function () {
   menuNav.classList.toggle("show-menu");
 });
 
-// penguin eye follow
+// close menu when clicked outside of it
+document.onclick = function(e){
+  if (!menuBtn.contains(e.target) && !menuNav.contains(e.target) ) {
+      menuNav.classList.remove("show");
+      menuBtn.classList.remove("move-btn");
+      menuBtn.classList.remove("cross")
+  }
+}
 
-let penguinEyes = document.querySelector(".penguin-eyes");
-let leftEye = document.querySelector(".left-eye-area");
-let leftPupil = document.querySelector(".left-pupil");
-let rightEye = document.querySelector(".right-eye-area");
-let rightPupil = document.querySelector(".right-pupil");
-
-// right eye code
-let rightEyeArea = rightEye.getBoundingClientRect();
-let rightR = rightEye.width / 2;
-let rightr = rightPupil.width/2
-let rightCenterX = rightEyeArea.left + rightR;
-let rightCenterY = rightEyeArea.top + rightR;
-
-document.addEventListener("mousemove", (e)=>{
-  let x = e.clientX - rightCenterX,
-      y = e.clientY - rightCenterY,
-      theta = Math.atan2(y,x),
-      angle = theta*180/Math.PI + 360;
-  
-  rightPupil.style.transform = `translateX(${rightR - rightr +"px"}) rotate(${angle + "deg"})`;
-  rightPupil.style.transformOrigin = `${rightr +"px"} center`;
-});
-menuBtn.addEventListener("click", function() {
-  menuBtn.classList.toggle("cross")
-  menuNav.classList.toggle("show-menu")
+menuNav.addEventListener("click", function() {
+  console.log("click!")
 })
