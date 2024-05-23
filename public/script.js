@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         behavior: "smooth",
       });
     });
-  
+
     nextButton.addEventListener("click", function () {
       carrousel.scrollBy({
         left: storyWidth.offsetWidth,
@@ -87,9 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Client-side Fetch
 
   forms.forEach(function (form) {
-
     form.addEventListener("submit", function (event) {
-
       loader.classList.add("show");
 
       let data = new FormData(this);
@@ -100,30 +98,26 @@ document.addEventListener("DOMContentLoaded", function () {
         method: this.method,
         body: new URLSearchParams(data),
       })
-
         .then(function (response) {
           return response.text();
         })
 
         .then(function (responseHTML) {
           if (document.startViewTransition) {
-            document.startViewTransition(function() {
+            document.startViewTransition(function () {
               document.querySelector(".liked-playlists > div").innerHTML =
-              responseHTML
-            })
-
+                responseHTML;
+            });
           } else {
             document.querySelector(".liked-playlists > div").innerHTML =
-            responseHTML;
+              responseHTML;
           }
 
           loader.classList.remove("show");
-
         });
       event.preventDefault();
     });
   });
-
 });
 
 // Settings
@@ -133,7 +127,7 @@ if (openSettingsButton) {
     document.documentElement.classList.add("no-scroll");
     settingsShown.classList.add("open-settings");
   });
-  
+
   closeSettingsButton.addEventListener("click", function () {
     document.documentElement.classList.remove("no-scroll");
     settingsShown.classList.remove("open-settings");
@@ -142,10 +136,35 @@ if (openSettingsButton) {
 
 // nav menu hamburger icon animation script
 
-const menuBtn = document.querySelector(".hamburger")
-const menuNav = document.querySelector(".nav-menu")
+const menuBtn = document.querySelector(".hamburger");
+const menuNav = document.querySelector(".nav-menu");
 
-menuBtn.addEventListener("click", function() {
-  menuBtn.classList.toggle("cross")
-  menuNav.classList.toggle("show-menu")
-})
+menuBtn.addEventListener("click", function () {
+  menuBtn.classList.toggle("cross");
+  menuNav.classList.toggle("show-menu");
+});
+
+// penguin eye follow
+
+let penguinEyes = document.querySelector(".penguin-eyes");
+let leftEye = document.querySelector(".left-eye-area");
+let leftPupil = document.querySelector(".left-pupil");
+let rightEye = document.querySelector(".right-eye-area");
+let rightPupil = document.querySelector(".right-pupil");
+
+// right eye code
+let rightEyeArea = rightEye.getBoundingClientRect();
+let rightR = rightEye.width / 2;
+let rightr = rightPupil.width/2
+let rightCenterX = rightEyeArea.left + rightR;
+let rightCenterY = rightEyeArea.top + rightR;
+
+document.addEventListener("mousemove", (e)=>{
+  let x = e.clientX - rightCenterX,
+      y = e.clientY - rightCenterY,
+      theta = Math.atan2(y,x),
+      angle = theta*180/Math.PI + 360;
+  
+  rightPupil.style.transform = `translateX(${rightR - rightr +"px"}) rotate(${angle + "deg"})`;
+  rightPupil.style.transformOrigin = `${rightr +"px"} center`;
+});

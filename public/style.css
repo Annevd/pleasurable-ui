@@ -16,6 +16,7 @@
 
   /* ------ Transitions ------ */
   --transition-1: 0.25s ease-in-out;
+  --easing: cubic-bezier(.7,0,.3,1);
 
   /* ------ Fonts ------ */
   --primary-font: "Poppins", sans-serif;
@@ -26,6 +27,11 @@
   --radius-3: 4px;
 
   /* ------ colors ------ */
+
+  /* like */
+  --like: #ea432a;
+  --like-btn: #9f301f;
+
   /* menu knoppen */
   --menu-1: #3f92b6;
   --menu-2: #599ae7;
@@ -677,13 +683,13 @@ section {
     background: var(--skeleton);
     border-radius: var(--radius-2);
     padding-bottom: var(--heading-spacing);
-  
+
     p {
       color: white;
       font-size: 1.25rem;
     }
   }
-  
+
   .empty-state-bg {
     height: 15rem;
     width: 12.5rem;
@@ -776,25 +782,6 @@ section {
     animation-delay: 3s;
     animation-fill-mode: forwards;
   }
-
-  .heart-animation {
-    height: 2rem;
-    width: 2rem;
-    background-image: url("/assets/heart-stopmotion.svg");
-    background-size: 1100%;
-    background-position: left;
-    background-repeat: no-repeat;
-    animation: heart-burst 1.25s steps(10) 3;
-  }
-}
-
-@keyframes heart-burst {
-  from {
-    background-position: left;
-  }
-  to {
-    background-position: right;
-  }
 }
 
 @keyframes fadeOut {
@@ -804,24 +791,6 @@ section {
   to {
     opacity: 0;
     display: none;
-  }
-}
-
-@keyframes background {
-  0% {
-    background-position: left;
-  }
-  15% {
-    background-position: right;
-  }
-  20% {
-    background-position: right;
-  }
-  40% {
-    background-position: left;
-  }
-  100% {
-    background-position: left;
   }
 }
 
@@ -1085,14 +1054,14 @@ section {
   color: white;
 }
 
-.suggested-playlists .like-button svg:hover,
+/* .suggested-playlists .like-button svg:hover,
 .suggested-playlists .like-button svg:hover path,
 .liked-playlists .unlike-button svg:hover,
 .liked-playlists .unlike-button svg:hover path {
   fill: red;
   stroke: red;
   opacity: 50%;
-}
+} */
 
 /* Media queries */
 
