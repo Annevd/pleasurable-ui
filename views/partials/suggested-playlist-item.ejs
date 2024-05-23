@@ -1,6 +1,6 @@
 <% playlists.filter(playlist=> !favorites[playlist.id]).forEach(playlist => { %>
     <!--  Filter playlists to get only suggested playlists -->
-    <li class="playlist">
+    <li class="playlist unliked">
         <figure>
             <picture>
                 <% if (playlist.image !=null) { %>

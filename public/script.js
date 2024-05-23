@@ -1,21 +1,27 @@
-// Variable Declarations
+// Variable Declarations 📦//
+  // Menu
 const menuBtn = document.querySelector(".hamburger")
 const menuNav = document.querySelector(".nav-menu")
-const hartje = document.querySelector(".heart");
+const heart = document.querySelector(".heart");
+const tlAlert = gsap.timeline({ paused: true });
+const heartAlert = document.querySelector(".menu li:last-of-type svg")
 
+  // Carrousel
 const prevButton = document.querySelector(".pagination button:first-of-type");
 const nextButton = document.querySelector(".pagination button:nth-of-type(2)");
 const carrousel = document.querySelector(".lessons .stories ul");
 const storyWidth = document.querySelector(".story");
 
+  // Form interaction
 let forms = document.querySelectorAll("form.like-form");
 const loader = document.querySelector(".loader-container");
 
+  // Playlist settings
 const openSettingsButton = document.querySelector(".playlist-head button");
 const closeSettingsButton = document.querySelector("button.close-settings");
 const settingsShown = document.querySelector(".playlist-settings-container");
 
-// Code Logic
+// Code Logic 🖖//
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -39,40 +45,48 @@ document.addEventListener("DOMContentLoaded", function () {
   // Client-side Fetch
 
   forms.forEach(function (form) {
-
     form.addEventListener("submit", function (event) {
-
       loader.classList.add("show");
-      // likeAlert.add.classList('heart-moved')
 
       let data = new FormData(this);
-
       data.append("enhanced", true);
+
+      const playlistItem = this.closest(".playlist");
+      const isLikeAction = playlistItem.classList.contains("unliked");
 
       fetch(this.action, {
         method: this.method,
         body: new URLSearchParams(data),
       })
-
         .then(function (response) {
           return response.text();
         })
-
         .then(function (responseHTML) {
           if (document.startViewTransition) {
-            document.startViewTransition(function() {
-              document.querySelector(".liked-playlists > div").innerHTML =
-              responseHTML
-            })
-
+            document.startViewTransition(function () {
+              document.querySelector(".liked-playlists > div").innerHTML = responseHTML;
+            });
           } else {
-            document.querySelector(".liked-playlists > div").innerHTML =
-            responseHTML;
+            document.querySelector(".liked-playlists > div").innerHTML = responseHTML;
           }
 
           loader.classList.remove("show");
 
+          // Update the playlist item state
+          if (isLikeAction) {
+            playlistItem.classList.remove("unliked");
+          } else {
+            playlistItem.classList.add("unliked");
+          }
         });
+
+      // Trigger the GSAP animation only for the like action
+      if (isLikeAction) {
+        tlAlert.restart();
+        heartAlert.classList.add("heart-alert")
+      }
+
+      // Prevent default form submission
       event.preventDefault();
     });
   });
@@ -129,14 +143,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   });
 
-  let tlLiefde = gsap.timeline();
+  // Like melding
 
-  tlLiefde
-  .from(hartje, {
+  tlAlert
+  .from(heart, {
     duration:.6,
     opacity:0,
   })
-  .from(hartje, {
+  .from(heart, {
     duration:.8,
     y:"-8em",
     scale:3,

@@ -92,6 +92,7 @@ nav {
     gap: 3rem;
 
     & li {
+      position: relative;
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -193,7 +194,20 @@ svg .rect-three {
   z-index: 101;
 }
 
-/* @keyframes scaleRotateIn {
+.heart-small {
+  display: none;
+}
+
+.heart-alert {
+  position: absolute;
+  display: block;
+  right: -0.25rem;
+  bottom: 6.75rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes scaleRotateIn {
   0% {
     transform: scale(0.5) rotate(-180deg);
     opacity: 0;
@@ -215,13 +229,13 @@ svg .rect-three {
   }
 }
 
-::view-transition-old(.liked-playlists .playlist) {
+::view-transition-old(scale-transition) {
   animation: scaleRotateOut 0.5s forwards;
 }
 
-::view-transition-new(.liked-playlists .playlist) {
+::view-transition-new(scale-transition) {
   animation: scaleRotateIn 0.5s forwards;
-} */
+}
 
 /* --- Algemene styling --- */
 
@@ -687,17 +701,6 @@ section {
     display: none;
   }
 
-  /* .liked-playlists .empty-state {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem var(--spacing);
-    border-radius: var(--radius-2);
-    width: 10rem;
-    height: 249px;
-    color: white;
-    background: var(--skeleton);
-  } */
-
   .empty-state {
     display: flex;
     flex-direction: column;
@@ -732,6 +735,10 @@ section {
       height: 45px;
       width: 45px;
     }
+  }
+
+  .liked-playlists .playlist {
+    view-transition-name: scale-transition;
   }
 
   .liked-playlists .playlist:last-of-type,
