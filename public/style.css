@@ -1129,6 +1129,26 @@ section {
   color: white;
 }
 
+.heart-animation {
+  height: 2rem;
+  width: 2rem;
+  background-image: url("/assets/heart-stopmotion.svg");
+  background-size: 1100%;
+  background-position: left;
+  background-repeat: no-repeat;
+  animation: heart-burst 1.25s steps(10) 3;
+}
+}
+
+@keyframes heart-burst {
+from {
+  background-position: left;
+}
+to {
+  background-position: right;
+}
+}
+
 /* .suggested-playlists .like-button svg:hover,
 .suggested-playlists .like-button svg:hover path,
 .liked-playlists .unlike-button svg:hover,
