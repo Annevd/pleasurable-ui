@@ -219,6 +219,11 @@ nav {
   }
 }
 
+.menu a:focus-visible {
+  scale: 1.01;
+  border: 5px solid var(--like);
+}
+
 /* hamburger svg animation */
 
 .hamburger rect {
