@@ -23,66 +23,69 @@ const settingsShown = document.querySelector(".playlist-settings-container");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Menu
+  const menuButton = document.querySelector('.menu-button');
+  const navMenu = document.querySelector('.nav-menu');
+  const menuLinks = navMenu.querySelectorAll('.menu a');
 
-  menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
+  // Function to update tabindex
+  const setTabIndex = (links, index) => {
+      links.forEach(link => {
+          link.setAttribute('tabindex', index);
+      });
+  };
 
-  openMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    navShown.classList.add("menu-open");
-    openMenuButton.classList.add("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "flex";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "0"));
-    firstMenuLink.focus();
-  });
+  // Initially set menu links to be not focusable
+  setTabIndex(menuLinks, '-1');
 
-  closeMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    navShown.classList.remove("menu-open");
-    openMenuButton.classList.remove("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "none";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (navShown.classList.contains("menu-open")) {
-      const isTabPressed = event.key === "Tab";
-      if (isTabPressed) {
-        if (event.shiftKey && document.activeElement === firstMenuLink) {
-          event.preventDefault();
-          closeMenuButton.focus();
-        } else if (
-          !event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          firstMenuLink.focus();
-        } else if (
-          event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          lastMenuLink.focus();
-        }
+  menuButton.addEventListener('click', () => {
+      const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+      menuButton.setAttribute('aria-expanded', !expanded);
+      
+      if (!expanded) {
+          menuButton.classList.add('cross');
+          navMenu.classList.add('show-menu');
+          setTabIndex(menuLinks, '0');  // Make links focusable
+          menuLinks[0].focus();
+      } else {
+          menuButton.classList.remove('cross');
+          navMenu.classList.remove('show-menu');
+          setTabIndex(menuLinks, '-1');  // Remove links from tab order
+          menuButton.focus();
       }
-    }
   });
 
-  // Carrousel
-  if (carrousel) {
-    prevButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: -storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
-  
-    nextButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
-  }
+  // Allow navigation through the menu with the keyboard
+  document.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && menuButton.getAttribute('aria-expanded') === 'true') {
+          if (document.activeElement === menuButton) {
+              menuLinks[0].focus();
+              event.preventDefault();
+          } else if (document.activeElement === menuLinks[menuLinks.length - 1]) {
+              menuButton.focus();
+              event.preventDefault();
+          }
+      }
+
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+          menuButton.setAttribute('aria-expanded', false);
+          menuButton.classList.remove('cross');
+          navMenu.classList.remove('show-menu');
+          setTabIndex(menuLinks, '-1');  // Remove links from tab order
+          menuButton.focus();
+      }
+  });
+});
+
+// nav menu hamburger icon animation script
+
+const menuBtn = document.querySelector(".hamburger")
+const menuNav = document.querySelector(".nav-menu")
+
+menuBtn.addEventListener("click", function() {
+  menuBtn.classList.toggle("cross")
+  menuNav.classList.toggle("show-menu")
+})
+
 
   // Client-side Fetch
 
@@ -124,28 +127,53 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-});
 
 // Settings
 
 if (openSettingsButton) {
-  openSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    settingsShown.classList.add("open-settings");
-  });
-  
-  closeSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    settingsShown.classList.remove("open-settings");
-  });
+ openSettingsButton.addEventListener("click", function () {
+   document.documentElement.classList.add("no-scroll");
+   settingsShown.classList.add("open-settings");
+ });
+ 
+ closeSettingsButton.addEventListener("click", function () {
+   document.documentElement.classList.remove("no-scroll");
+   settingsShown.classList.remove("open-settings");
+ });
 }
 
-// nav menu hamburger icon animation script
+// GSAP carrousel pagination
+document.addEventListener("DOMContentLoaded", function() {
+ const buttons = document.querySelectorAll(".pagination button");
+ const select = document.querySelector(".pagination .select");
+ const storiesContent = document.querySelector(".stories-content");
+ const columnWidth = storiesContent.scrollWidth / buttons.length;
 
-const menuBtn = document.querySelector(".hamburger")
-const menuNav = document.querySelector(".nav-menu")
+ buttons.forEach((button, index) => {
+     button.addEventListener("mouseenter", function(e) {
+         animateSelect(e);
+     });
+     
+     button.addEventListener("click", function() {
+         scrollToColumn(index);
+     });
+ });
 
-menuBtn.addEventListener("click", function() {
-  menuBtn.classList.toggle("cross")
-  menuNav.classList.toggle("show-menu")
-})
+ function animateSelect(e) {
+     const target = e.currentTarget;
+     gsap.to(select, {
+         duration: 2,
+         x: target.offsetLeft - 37, // Adjust the offset as needed
+         ease: Elastic.easeOut.config(0.6, 0.4)
+     });
+ }
+
+ function scrollToColumn(index) {
+     const scrollPosition = columnWidth * index;
+     gsap.to(storiesContent, {
+         duration: 0.1,
+         scrollLeft: scrollPosition,
+         ease: 'power1.inOut'
+     });
+ }
+});

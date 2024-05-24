@@ -567,6 +567,11 @@ section {
     position: relative;
   }
 
+  .stories-content {
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+
   .stories-content::after {
     content: "";
     position: absolute;
@@ -580,7 +585,7 @@ section {
       rgba(0, 0, 0, 0) 100%
     );
   }
-
+/* 
   .pagination {
     display: flex;
     justify-content: center;
@@ -603,6 +608,64 @@ section {
     p {
       color: white;
     }
+  } */
+
+  /* pagination slider try out */
+
+  .pagination {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination ul {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 30px;
+  }
+
+  .pagination ul li {
+    list-style: none;
+    width: 30px;
+    height: 30px;
+    margin: 7px;
+    border-radius: 50%;
+  }
+
+  /* door .circles een positie absoluut te geven krijgen ze dezelfde positie als de buttons */
+  .pagination .circles {
+    position: absolute;
+    z-index: 1;
+  }
+
+  /* styling voor de selector */
+  .pagination .circles .select {
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(186, 145, 186);
+  }
+
+  .pagination .circle {
+    background-color: rgb(186, 145, 186);
+  }
+  
+  /* de buttons een hogere z-index meegeven zodat deze boven de cirkels uitlkomen.*/
+  .pagination .pages {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pagination .pages .page-number button {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
   }
 
   /* Languages */
