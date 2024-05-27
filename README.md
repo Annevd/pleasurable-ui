@@ -15,8 +15,12 @@ Ontwerp en maak voor een opdrachtgever een interface waar gebruikers blij van wo
 
 ## Beschrijving
 <!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
+Voor deze opdracht lag de focus op het enhancen van je website met client side scripting, om een leuke en interessante website te maken waar gebruikers blij van worden.
+Dit hebben wij gedaan door interessante animaties toe te voegen aan het openen van het menu, het icoontje van het menu, de paginatie van de carrousel, de like interactie en CSS hovers.
+Hierdoor gebeurt er op bijna elk component wel wat interessants voor de gebruiker.
 <!-- Voeg een mooie poster visual toe 📸 -->
 <!-- Voeg een link toe naar Github Pages 🌐-->
+[Livelink]()
 
 ## Gebruik
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
@@ -28,12 +32,12 @@ Bij deze teamopdracht hebben wij gebruik gemaakt van het principe Progressive En
 
 Namelijk:
 
-- Laag 1 (functional): de content laag (bijv. HTML)
-- Laag 2 (reliable): de presentatie laag (bijv. basic CSS)
-- Laag 3 (usable): de bruikbare laag (bijv. extra client-side Javascript)
-- Laag 4 (pleasurable): de extra leuke laag (bijv. animaties)
+- **Laag 1 (functional):** de content laag (bijv. HTML)
+- **Laag 2 (reliable):** de presentatie laag (bijv. basic CSS)
+- **Laag 3 (usable):** de bruikbare laag (bijv. extra client-side Javascript)
+- **Laag 4 (pleasurable):** de extra leuke laag (bijv. animaties)
 
-Met keyframe animations, GSAP, CSS hovers hebben wij onze website verrijkt zodat gebruikers er blij van worden.
+Met keyframe animations, GSAP, Javascript en CSS hovers hebben wij onze website verrijkt zodat gebruikers er blij van worden.
 
 ## Installatie
 <!-- Bij Instalatie staat hoe een andere developer aan jouw repo kan werken -->
