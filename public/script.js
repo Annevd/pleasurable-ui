@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         behavior: "smooth",
       });
     });
-  
+
     nextButton.addEventListener("click", function () {
       carrousel.scrollBy({
         left: storyWidth.offsetWidth,
@@ -169,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Settings
-
 if (openSettingsButton) {
   openSettingsButton.addEventListener("click", function () {
     document.documentElement.classList.add("no-scroll");
@@ -183,8 +182,10 @@ if (openSettingsButton) {
 }
 
 // nav menu hamburger icon animation script
+const menuBtn = document.querySelector(".hamburger");
+const menuNav = document.querySelector(".nav-menu");
 
-menuBtn.addEventListener("click", function() {
-  menuBtn.classList.toggle("cross")
-  menuNav.classList.toggle("show-menu")
-})
+menuBtn.addEventListener("click", function () {
+  menuBtn.classList.toggle("cross");
+  menuNav.classList.toggle("show-menu");
+});
