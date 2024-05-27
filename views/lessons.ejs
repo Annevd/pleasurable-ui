@@ -17,6 +17,31 @@
                 </ol>
             </section>
 
+            <!-- Liked playlists -->
+
+            <section class="liked-playlists">
+                <h2>Liked playlists</h2>
+                <div>
+                    <% if (likeList.length> 0) { %> <!-- Check if there are any liked playlists -->
+                        <%- include('./partials/liked-playlist-item') %>
+                            <% } else { %> <!-- If there are no liked playlists -->
+                                <div class="empty-state">
+                                    <div class="empty-state-bg"></div>
+                                    <p>Nothing here yet..</p>
+                                </div>
+                                <% } %>
+                </div>
+            </section>
+
+            <!-- Suggested playlists -->
+
+            <section class="suggested-playlists">
+                <h2>Suggested playlists</h2>
+                <ul>
+                    <%- include('./partials/suggested-playlist-item') %>
+                </ul>
+            </section>
+
             <!-- Own playlists -->
 
             <section class="own-playlists">
@@ -94,31 +119,6 @@
                     </button>
                 </div>
 
-            </section>
-
-            <!-- Liked playlists -->
-
-            <section class="liked-playlists">
-                <h2>Liked playlists</h2>
-                <div>
-                    <% if (likeList.length> 0) { %> <!-- Check if there are any liked playlists -->
-                        <%- include('./partials/liked-playlist-item') %>
-                            <% } else { %> <!-- If there are no liked playlists -->
-                                <div class="empty-state">
-                                    <div class="empty-state-bg"></div>
-                                    <p>Nothing here yet..</p>
-                                </div>
-                                <% } %>
-                </div>
-            </section>
-
-            <!-- Suggested playlists -->
-
-            <section class="suggested-playlists">
-                <h2>Suggested playlists</h2>
-                <ul>
-                    <%- include('./partials/suggested-playlist-item') %>
-                </ul>
             </section>
 
             <!-- UI States -->
