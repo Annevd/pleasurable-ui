@@ -1,44 +1,84 @@
-// Variable Declarations
+// Variable Declarations 📦//
+  // Menu
+const menuBtn = document.querySelector(".hamburger")
+const menuNav = document.querySelector(".nav-menu")
+const heart = document.querySelector(".heart");
+const tlAlert = gsap.timeline({ paused: true });
+const heartAlert = document.querySelector(".menu li:last-of-type svg")
 
-const openMenuButton = document.querySelector(".menu-button.home");
-const closeMenuButton = document.querySelector(".menu-button.menu");
-const navShown = document.querySelector("nav");
-const menuLinks = document.querySelectorAll(".menu a");
-const firstMenuLink = menuLinks[0];
-const lastMenuLink = menuLinks[menuLinks.length - 1];
-
-const prevButton = document.querySelector(".pagination button:first-of-type");
-const nextButton = document.querySelector(".pagination button:nth-of-type(2)");
+  // Carrousel
+const prevButton = document.querySelector(".pagination-wrapper button:first-of-type");
+const nextButton = document.querySelector(".pagination-wrapper button:nth-of-type(2)");
 const carrousel = document.querySelector(".lessons .stories ul");
 const storyWidth = document.querySelector(".story");
+const paginationWrapper = document.querySelector('.pagination-wrapper')
 
+  // Form interaction
 let forms = document.querySelectorAll("form.like-form");
 const loader = document.querySelector(".loader-container");
 
+  // Playlist settings
 const openSettingsButton = document.querySelector(".playlist-head button");
 const closeSettingsButton = document.querySelector("button.close-settings");
 const settingsShown = document.querySelector(".playlist-settings-container");
 
-// Code Logic
+// Code Logic 🖖//
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Carrousel
-  if (carrousel) {
-    prevButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: -storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
+if (carrousel) {
+  prevButton.addEventListener("click", function () {
+      if (carrousel.scrollLeft > 0) {
+          carrousel.scrollBy({
+              left: -storyWidth.offsetWidth,
+              behavior: "smooth",
+          });
+          paginationWrapper.classList.add('transition-prev');
+          setTimeout(cleanClasses, 500);
+      }
+  });
 
-    nextButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
-  }
+  nextButton.addEventListener("click", function () {
+      if (carrousel.scrollLeft + carrousel.clientWidth < carrousel.scrollWidth) {
+          carrousel.scrollBy({
+              left: storyWidth.offsetWidth,
+              behavior: "smooth",
+          });
+          paginationWrapper.classList.add('transition-next');
+          setTimeout(cleanClasses, 500);
+      }
+  });
+
+  document.addEventListener("keydown", function (event) {
+      switch(event.key) {
+          case 'ArrowLeft':
+              if (carrousel.scrollLeft > 0) {
+                  carrousel.scrollBy({
+                      left: -storyWidth.offsetWidth,
+                      behavior: "smooth",
+                  });
+                  paginationWrapper.classList.add('transition-prev');
+                  setTimeout(cleanClasses, 500);
+              }
+              break;
+          case 'ArrowRight':
+              if (carrousel.scrollLeft + carrousel.clientWidth < carrousel.scrollWidth) {
+                  carrousel.scrollBy({
+                      left: storyWidth.offsetWidth,
+                      behavior: "smooth",
+                  });
+                  paginationWrapper.classList.add('transition-next');
+                  setTimeout(cleanClasses, 500);
+              }
+              break;
+      }
+  });
+}
+
+function cleanClasses() {
+    paginationWrapper.classList.remove('transition-prev');
+    paginationWrapper.classList.remove('transition-next');
+}
 
   // Client-side Fetch
 
@@ -47,8 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
       loader.classList.add("show");
 
       let data = new FormData(this);
-
       data.append("enhanced", true);
+
+      const playlistItem = this.closest(".playlist");
+      const isLikeAction = playlistItem.classList.contains("unliked");
 
       fetch(this.action, {
         method: this.method,
@@ -57,42 +99,36 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(function (response) {
           return response.text();
         })
-
         .then(function (responseHTML) {
           if (document.startViewTransition) {
             document.startViewTransition(function () {
-              document.querySelector(".liked-playlists > div").innerHTML =
-                responseHTML;
+              document.querySelector(".liked-playlists > div").innerHTML = responseHTML;
             });
           } else {
-            document.querySelector(".liked-playlists > div").innerHTML =
-              responseHTML;
+            document.querySelector(".liked-playlists > div").innerHTML = responseHTML;
           }
 
           loader.classList.remove("show");
+
+          // Update the playlist item state
+          if (isLikeAction) {
+            playlistItem.classList.remove("unliked");
+          } else {
+            playlistItem.classList.add("unliked");
+          }
         });
+
+      // Trigger the GSAP animation only for the like action
+      if (isLikeAction) {
+        tlAlert.restart();
+        heartAlert.classList.add("heart-alert")
+      }
+
+      // Prevent default form submission
       event.preventDefault();
     });
   });
-});
 
-// Settings
-
-if (openSettingsButton) {
-  openSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    settingsShown.classList.add("open-settings");
-  });
-
-  closeSettingsButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    settingsShown.classList.remove("open-settings");
-  });
-}
-
-// menu
-
-document.addEventListener('DOMContentLoaded', () => {
   const menuButton = document.querySelector('.menu-button');
   const navMenu = document.querySelector('.nav-menu');
   const menuLinks = navMenu.querySelectorAll('.menu a');
@@ -144,27 +180,48 @@ document.addEventListener('DOMContentLoaded', () => {
           menuButton.focus();
       }
   });
+
+  // Like melding
+
+  tlAlert
+  .from(heart, {
+    duration:.6,
+    opacity:0,
+  })
+  .from(heart, {
+    duration:.8,
+    y:"-8em",
+    scale:3,
+    ease: "power2.in",
+  }, "<")
+  .to(menuBtn, {
+    duration:.1,
+    y:"0.3em",
+  }, "-=.2")
+  .to(menuBtn, {
+    duration:1.5,
+    y:"0em",
+    ease: "elastic.out(1,0.3)",
+  });
+
 });
+
+// Settings
+if (openSettingsButton) {
+  openSettingsButton.addEventListener("click", function () {
+    document.documentElement.classList.add("no-scroll");
+    settingsShown.classList.add("open-settings");
+  });
+  
+  closeSettingsButton.addEventListener("click", function () {
+    document.documentElement.classList.remove("no-scroll");
+    settingsShown.classList.remove("open-settings");
+  });
+}
 
 // nav menu hamburger icon animation script
 
-const menuBtn = document.querySelector(".hamburger");
-const menuNav = document.querySelector(".nav-menu");
-
-menuBtn.addEventListener("click", function () {
-  menuBtn.classList.toggle("cross");
-  menuNav.classList.toggle("show-menu");
-});
-
-// close menu when clicked outside of it
-document.onclick = function(e){
-  if (!menuBtn.contains(e.target) && !menuNav.contains(e.target) ) {
-      menuNav.classList.remove("show");
-      menuBtn.classList.remove("move-btn");
-      menuBtn.classList.remove("cross")
-  }
-}
-
-menuNav.addEventListener("click", function() {
-  console.log("click!")
+menuBtn.addEventListener("click", function() {
+  menuBtn.classList.toggle("cross")
+  menuNav.classList.toggle("show-menu")
 })

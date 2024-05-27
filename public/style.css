@@ -98,6 +98,7 @@ nav {
     gap: 3rem;
 
     & li {
+      position: relative;
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -119,10 +120,6 @@ nav {
   }
 }
 
-/* #active:checked ~ nav {
-  clip-path: circle(75%);
-} */
-
 .menu-button {
   display: flex;
   align-items: center;
@@ -136,11 +133,6 @@ nav {
   border-radius: 50%;
   cursor: pointer;
   z-index: 101;
-}
-
-.menu-button.menu {
-  /* background: white; */
-  display: none;
 }
 
 .menu-button.home {
@@ -255,6 +247,57 @@ svg .rect-three {
 
 .show-menu {
   clip-path: circle(75%);
+}
+
+.heart {
+  position: absolute;
+  right: -0.2rem;
+  bottom: 2.5rem;
+  pointer-events: none;
+  z-index: 101;
+}
+
+.heart-small {
+  display: none;
+}
+
+.heart-alert {
+  position: absolute;
+  display: block;
+  right: -0.25rem;
+  bottom: 6.75rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes scaleRotateIn {
+  0% {
+    transform: scale(0.5) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleRotateOut {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+::view-transition-old(scale-transition) {
+  animation: scaleRotateOut 0.5s forwards;
+}
+
+::view-transition-new(scale-transition) {
+  animation: scaleRotateIn 0.5s forwards;
 }
 
 /* --- Algemene styling --- */
@@ -644,7 +687,8 @@ section {
     );
   }
 
-  .pagination {
+  /* paginatie */
+  .pagination-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -662,10 +706,87 @@ section {
         display: block;
       }
     }
+  }
 
-    p {
-      color: white;
-    }
+  .little-dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 4px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .little-dot-first,
+  .little-dot-last {
+    z-index: 5;
+  }
+
+  .transition-prev .pagination-container {
+    animation: pagination-container-prev 0.3s forwards;
+  }
+
+  .transition-next .pagination-container {
+    animation: pagination-container-next 0.3s forwards;
+  }
+
+  .transition-prev .little-dot-first {
+    animation: slideLeft 0.4s 0.3s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .transition-next .little-dot-first {
+    animation: little-dot-last-animation 0.3s forwards;
+  }
+
+  .transition-prev .little-dot-last {
+    animation: little-dot-last-animation 0.3s forwards;
+  }
+
+  .transition-next .little-dot-last {
+    animation: slideRight 0.4s 0.3s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .big-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background: #f6af54;
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+  }
+
+  .transition-next .big-dot {
+    right: auto;
+    left: -6px;
+  }
+
+  .big-dot-container {
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .transition-next .big-dot-container {
+    right: auto;
+    left: 3px;
+  }
+
+  .transition-prev .big-dot-container {
+    animation: big-dot-container-prev 0.3s forwards;
+  }
+  
+  .transition-next .big-dot-container {
+    animation: big-dot-container-next 0.3s forwards;
   }
 
   /* Languages */
@@ -721,17 +842,6 @@ section {
     display: none;
   }
 
-  /* .liked-playlists .empty-state {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem var(--spacing);
-    border-radius: var(--radius-2);
-    width: 10rem;
-    height: 249px;
-    color: white;
-    background: var(--skeleton);
-  } */
-
   .empty-state {
     display: flex;
     flex-direction: column;
@@ -766,6 +876,10 @@ section {
       height: 45px;
       width: 45px;
     }
+  }
+
+  .liked-playlists .playlist {
+    view-transition-name: scale-transition;
   }
 
   .liked-playlists .playlist:last-of-type,
@@ -839,6 +953,27 @@ section {
     animation-delay: 3s;
     animation-fill-mode: forwards;
   }
+  
+  .heart-animation {
+    height: 2rem;
+    width: 2rem;
+    background-image: url("/assets/heart-stopmotion.svg");
+    background-size: 1100%;
+    background-position: left;
+    background-repeat: no-repeat;
+    animation: heart-burst 1.25s steps(10) 3;
+  }
+}
+
+/* Keyframes lessons pagina */
+
+@keyframes heart-burst {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }
 
 @keyframes fadeOut {
@@ -867,6 +1002,58 @@ section {
   100% {
     background-position: left;
   }
+}
+
+@keyframes pagination-container-prev {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(18px); }
+}
+
+@keyframes pagination-container-next {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-18px); }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes little-dot-first-animation {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes little-dot-last-animation {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(18px);
+    opacity: 1;
+  }
+}
+
+@keyframes big-dot-container-prev {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(-50%) rotate(-179deg); }
+}
+
+@keyframes big-dot-container-next {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(-50%) rotate(-181deg); }
 }
 
 /*█████  ██      ██          ███████ ████████  ██████  ██████  ██ ███████ ███████ 
@@ -1117,8 +1304,8 @@ section {
   border: 5px solid white;
 }
 
-.pagination button:hover,
-.pagination button:hover path {
+.pagination-wrapper button:hover,
+.pagination-wrapper button:hover path {
   background: white;
   fill: var(--detail-1);
 }
@@ -1149,14 +1336,14 @@ to {
 }
 }
 
-/* .suggested-playlists .like-button svg:hover,
+.suggested-playlists .like-button svg:hover,
 .suggested-playlists .like-button svg:hover path,
 .liked-playlists .unlike-button svg:hover,
 .liked-playlists .unlike-button svg:hover path {
   fill: red;
   stroke: red;
   opacity: 50%;
-} */
+}
 
 /* Media queries */
 
