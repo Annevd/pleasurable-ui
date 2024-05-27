@@ -173,8 +173,8 @@ document.addEventListener("DOMContentLoaded", function() {
  function animateSelect(e) {
      const target = e.currentTarget;
      gsap.to(select, {
-         duration: 2,
-         x: target.offsetLeft - 37, // Adjust the offset as needed
+         duration: 2, 
+         x: target.offsetLeft - 37, // voor de positie van de selector
          ease: Elastic.easeOut.config(0.8, 0.5)
      });
  }

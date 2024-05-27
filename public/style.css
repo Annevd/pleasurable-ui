@@ -650,7 +650,6 @@ section {
 
   .pagination .circle {
     background-color: rgb(186, 145, 186);
-    /* background-color: transparent; */
   }
   
   /* de buttons een hogere z-index meegeven zodat deze boven de cirkels uitlkomen.*/
