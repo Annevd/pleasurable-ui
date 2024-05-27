@@ -1185,14 +1185,14 @@ to {
 }
 }
 
-/* .suggested-playlists .like-button svg:hover,
+.suggested-playlists .like-button svg:hover,
 .suggested-playlists .like-button svg:hover path,
 .liked-playlists .unlike-button svg:hover,
 .liked-playlists .unlike-button svg:hover path {
   fill: red;
   stroke: red;
   opacity: 50%;
-} */
+}
 
 /* Media queries */
 
