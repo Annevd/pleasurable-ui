@@ -7,10 +7,11 @@ const tlAlert = gsap.timeline({ paused: true });
 const heartAlert = document.querySelector(".menu li:last-of-type svg")
 
   // Carrousel
-const prevButton = document.querySelector(".pagination button:first-of-type");
-const nextButton = document.querySelector(".pagination button:nth-of-type(2)");
+const prevButton = document.querySelector(".pagination-wrapper button:first-of-type");
+const nextButton = document.querySelector(".pagination-wrapper button:nth-of-type(2)");
 const carrousel = document.querySelector(".lessons .stories ul");
 const storyWidth = document.querySelector(".story");
+const paginationWrapper = document.querySelector('.pagination-wrapper')
 
   // Form interaction
 let forms = document.querySelectorAll("form.like-form");
@@ -25,22 +26,59 @@ const settingsShown = document.querySelector(".playlist-settings-container");
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Carrousel
-  if (carrousel) {
-    prevButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: -storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
+if (carrousel) {
+  prevButton.addEventListener("click", function () {
+      if (carrousel.scrollLeft > 0) {
+          carrousel.scrollBy({
+              left: -storyWidth.offsetWidth,
+              behavior: "smooth",
+          });
+          paginationWrapper.classList.add('transition-prev');
+          setTimeout(cleanClasses, 500);
+      }
+  });
 
-    nextButton.addEventListener("click", function () {
-      carrousel.scrollBy({
-        left: storyWidth.offsetWidth,
-        behavior: "smooth",
-      });
-    });
-  }
+  nextButton.addEventListener("click", function () {
+      if (carrousel.scrollLeft + carrousel.clientWidth < carrousel.scrollWidth) {
+          carrousel.scrollBy({
+              left: storyWidth.offsetWidth,
+              behavior: "smooth",
+          });
+          paginationWrapper.classList.add('transition-next');
+          setTimeout(cleanClasses, 500);
+      }
+  });
+
+  document.addEventListener("keydown", function (event) {
+      switch(event.key) {
+          case 'ArrowLeft':
+              if (carrousel.scrollLeft > 0) {
+                  carrousel.scrollBy({
+                      left: -storyWidth.offsetWidth,
+                      behavior: "smooth",
+                  });
+                  paginationWrapper.classList.add('transition-prev');
+                  setTimeout(cleanClasses, 500);
+              }
+              break;
+          case 'ArrowRight':
+              if (carrousel.scrollLeft + carrousel.clientWidth < carrousel.scrollWidth) {
+                  carrousel.scrollBy({
+                      left: storyWidth.offsetWidth,
+                      behavior: "smooth",
+                  });
+                  paginationWrapper.classList.add('transition-next');
+                  setTimeout(cleanClasses, 500);
+              }
+              break;
+      }
+  });
+}
+
+function cleanClasses() {
+    paginationWrapper.classList.remove('transition-prev');
+    paginationWrapper.classList.remove('transition-next');
+}
 
   // Client-side Fetch
 
@@ -183,7 +221,7 @@ if (openSettingsButton) {
 
 // nav menu hamburger icon animation script
 
-menuBtn.addEventListener("click", function () {
-  menuBtn.classList.toggle("cross");
-  menuNav.classList.toggle("show-menu");
-});
+menuBtn.addEventListener("click", function() {
+  menuBtn.classList.toggle("cross")
+  menuNav.classList.toggle("show-menu")
+})
