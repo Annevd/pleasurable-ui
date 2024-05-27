@@ -22,50 +22,6 @@ const settingsShown = document.querySelector(".playlist-settings-container");
 // Code Logic
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Menu
-
-  menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-
-  openMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.add("no-scroll");
-    navShown.classList.add("menu-open");
-    openMenuButton.classList.add("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "flex";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "0"));
-    firstMenuLink.focus();
-  });
-
-  closeMenuButton.addEventListener("click", function () {
-    document.documentElement.classList.remove("no-scroll");
-    navShown.classList.remove("menu-open");
-    openMenuButton.classList.remove("hidden-menu");
-    document.querySelector(".menu-button.menu").style.display = "none";
-    menuLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (navShown.classList.contains("menu-open")) {
-      const isTabPressed = event.key === "Tab";
-      if (isTabPressed) {
-        if (event.shiftKey && document.activeElement === firstMenuLink) {
-          event.preventDefault();
-          closeMenuButton.focus();
-        } else if (
-          !event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          firstMenuLink.focus();
-        } else if (
-          event.shiftKey &&
-          document.activeElement === closeMenuButton
-        ) {
-          event.preventDefault();
-          lastMenuLink.focus();
-        }
-      }
-    }
-  });
 
   // Carrousel
   if (carrousel) {
@@ -75,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         behavior: "smooth",
       });
     });
-  
+
     nextButton.addEventListener("click", function () {
       carrousel.scrollBy({
         left: storyWidth.offsetWidth,
@@ -87,9 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Client-side Fetch
 
   forms.forEach(function (form) {
-
     form.addEventListener("submit", function (event) {
-
       loader.classList.add("show");
 
       let data = new FormData(this);
@@ -100,30 +54,26 @@ document.addEventListener("DOMContentLoaded", function () {
         method: this.method,
         body: new URLSearchParams(data),
       })
-
         .then(function (response) {
           return response.text();
         })
 
         .then(function (responseHTML) {
           if (document.startViewTransition) {
-            document.startViewTransition(function() {
+            document.startViewTransition(function () {
               document.querySelector(".liked-playlists > div").innerHTML =
-              responseHTML
-            })
-
+                responseHTML;
+            });
           } else {
             document.querySelector(".liked-playlists > div").innerHTML =
-            responseHTML;
+              responseHTML;
           }
 
           loader.classList.remove("show");
-
         });
       event.preventDefault();
     });
   });
-
 });
 
 // Settings
@@ -133,19 +83,88 @@ if (openSettingsButton) {
     document.documentElement.classList.add("no-scroll");
     settingsShown.classList.add("open-settings");
   });
-  
+
   closeSettingsButton.addEventListener("click", function () {
     document.documentElement.classList.remove("no-scroll");
     settingsShown.classList.remove("open-settings");
   });
 }
 
+// menu
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menuButton = document.querySelector('.menu-button');
+  const navMenu = document.querySelector('.nav-menu');
+  const menuLinks = navMenu.querySelectorAll('.menu a');
+
+  // Function to update tabindex
+  const setTabIndex = (links, index) => {
+      links.forEach(link => {
+          link.setAttribute('tabindex', index);
+      });
+  };
+
+  // Initially set menu links to be not focusable
+  setTabIndex(menuLinks, '-1');
+
+  menuButton.addEventListener('click', () => {
+      const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+      menuButton.setAttribute('aria-expanded', !expanded);
+      
+      if (!expanded) {
+          menuButton.classList.add('cross');
+          navMenu.classList.add('show-menu');
+          setTabIndex(menuLinks, '0');  // Make links focusable
+          menuLinks[0].focus();
+      } else {
+          menuButton.classList.remove('cross');
+          navMenu.classList.remove('show-menu');
+          setTabIndex(menuLinks, '-1');  // Remove links from tab order
+          menuButton.focus();
+      }
+  });
+
+  // Allow navigation through the menu with the keyboard
+  document.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && menuButton.getAttribute('aria-expanded') === 'true') {
+          if (document.activeElement === menuButton) {
+              menuLinks[0].focus();
+              event.preventDefault();
+          } else if (document.activeElement === menuLinks[menuLinks.length - 1]) {
+              menuButton.focus();
+              event.preventDefault();
+          }
+      }
+
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+          menuButton.setAttribute('aria-expanded', false);
+          menuButton.classList.remove('cross');
+          navMenu.classList.remove('show-menu');
+          setTabIndex(menuLinks, '-1');  // Remove links from tab order
+          menuButton.focus();
+      }
+  });
+});
+
 // nav menu hamburger icon animation script
 
-const menuBtn = document.querySelector(".hamburger")
-const menuNav = document.querySelector(".nav-menu")
+const menuBtn = document.querySelector(".hamburger");
+const menuNav = document.querySelector(".nav-menu");
 
-menuBtn.addEventListener("click", function() {
-  menuBtn.classList.toggle("cross")
-  menuNav.classList.toggle("show-menu")
+menuBtn.addEventListener("click", function () {
+  menuBtn.classList.toggle("cross");
+  menuNav.classList.toggle("show-menu");
+});
+
+// close menu when clicked outside of it
+document.onclick = function(e){
+  if (!menuBtn.contains(e.target) && !menuNav.contains(e.target) ) {
+      menuNav.classList.remove("show");
+      menuBtn.classList.remove("move-btn");
+      menuBtn.classList.remove("cross")
+  }
+}
+
+menuNav.addEventListener("click", function() {
+  console.log("click!")
 })
