@@ -1157,26 +1157,68 @@ section {
   opacity: 50%;
 }
 
-
 /** HOMEPAGE **/
 
 .homepage-main {
   display: grid;
-  place-items: center;
   width: 100vw;
   height: 100vh;
+  background-image: url(/assets/house-mouse.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.right-eye-area {
-  position: relative;
+.homepage-main_wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.homepage-main h1 {
+  color: black;
+}
+
+.homepage_text-bubble_wrapper {
+  grid-column: 2/4;
+  grid-row: 2/4;
+}
+
+.homepage_text-bubble {
+  background-color: white;
+  height: 7rem;
+  padding: 0 0.75rem;
+  margin: 0;
+  border-radius: 12px;
+  z-index: 5;
+}
+
+/* svg */
+.text-bubble_corner {
+  width: 100%;
   overflow: hidden;
+  line-height: 0;
+  margin-top: -0.2rem;
+  z-index: 1;
 }
 
-.right-pupil {
-  position: absolute;
+.text-bubble_corner svg {
+  position: relative;
+  display: block;
+  width: calc(131% + 1.3px);
+  height: 134px;
 }
 
+.text-bubble_corner .shape-fill {
+  fill: #ffffff;
+}
 
+.mouse-svg {
+  grid-column: 3/7;
+  grid-row: 3/5;
+}
 
 /* Media queries */
 

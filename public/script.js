@@ -168,3 +168,57 @@ document.onclick = function(e){
 menuNav.addEventListener("click", function() {
   console.log("click!")
 })
+
+
+
+// mouse eye follow animations
+
+document.addEventListener('mousemove', (event) => {
+  const cursorX = event.clientX
+  const cursorY = event.clientY
+
+  const rightEye = document.querySelector('.right-eye-area')
+  const rightPupil = document.querySelector('.right-pupil')
+  const leftEye = document.querySelector('.left-eye-area')
+  const leftPupil = document.querySelector('.left-pupil')
+  moveRightEye(rightEye, rightPupil, cursorX, cursorY)
+  moveLeftEye(leftEye, leftPupil, cursorX, cursorY)
+})
+
+function moveRightEye(rightEye, rightPupil, cursorX, cursorY) {
+  const rightEyeRect = rightEye.getBoundingClientRect()
+  const rightEyeCenterX = rightEyeRect.left + rightEyeRect.width / 2
+  const rightEyeCenterY = rightEyeRect.top + rightEyeRect.height / 2
+
+  const rightDeltaX = cursorX - rightEyeCenterX;
+  const rightDeltaY = cursorY - rightEyeCenterY;
+  const rightDistance = Math.sqrt(rightDeltaX * rightDeltaX + rightDeltaY * rightDeltaY);
+
+  // Limit the pupil movement to within the eyeball
+  const rightMaxMovement = rightEyeRect.width / 8; // Maximum movement within the eye area (adjust as necessary)
+  const rightLimitedDistance = Math.min(rightDistance, rightMaxMovement);
+  const rightAngle = Math.atan2(rightDeltaY, rightDeltaX);
+  const rightPupilX = rightLimitedDistance * Math.cos(rightAngle);
+  const rightPupilY = rightLimitedDistance * Math.sin(rightAngle);
+
+  rightPupil.style.transform = `translate(${rightPupilX}px, ${rightPupilY}px)`;
+}
+
+function moveLeftEye(leftEye, leftPupil, cursorX, cursorY) {
+  const leftEyeRect = leftEye.getBoundingClientRect()
+  const leftEyeCenterX = leftEyeRect.left + leftEyeRect.width / 2
+  const leftEyeCenterY = leftEyeRect.top + leftEyeRect.height / 2
+
+  const leftDeltaX = cursorX - leftEyeCenterX;
+  const leftDeltaY = cursorY - leftEyeCenterY;
+  const leftDistance = Math.sqrt(leftDeltaX * leftDeltaX + leftDeltaY * leftDeltaY);
+
+  // Limit the pupil movement to within the eyeball
+  const leftMaxMovement = leftEyeRect.width / 8; // Maximum movement within the eye area (adjust as necessary)
+  const leftLimitedDistance = Math.min(leftDistance, leftMaxMovement);
+  const leftAngle = Math.atan2(leftDeltaY, leftDeltaX);
+  const leftPupilX = leftLimitedDistance * Math.cos(leftAngle);
+  const leftPupilY = leftLimitedDistance * Math.sin(leftAngle);
+
+  leftPupil.style.transform = `translate(${leftPupilX}px, ${leftPupilY}px)`;
+}
