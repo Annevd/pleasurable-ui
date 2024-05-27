@@ -1138,25 +1138,45 @@ section {
   background-repeat: no-repeat;
   animation: heart-burst 1.25s steps(10) 3;
 }
-}
 
 @keyframes heart-burst {
-from {
-  background-position: left;
-}
-to {
-  background-position: right;
-}
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }
 
-/* .suggested-playlists .like-button svg:hover,
+.suggested-playlists .like-button svg:hover,
 .suggested-playlists .like-button svg:hover path,
 .liked-playlists .unlike-button svg:hover,
 .liked-playlists .unlike-button svg:hover path {
   fill: red;
   stroke: red;
   opacity: 50%;
-} */
+}
+
+
+/** HOMEPAGE **/
+
+.homepage-main {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.right-eye-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.right-pupil {
+  position: absolute;
+}
+
+
 
 /* Media queries */
 
