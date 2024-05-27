@@ -610,7 +610,7 @@ section {
     }
   } */
 
-  /* pagination slider try out */
+  /* GSAP pagination try out */
 
   .pagination {
     position: relative;
@@ -618,13 +618,13 @@ section {
     justify-content: center;
   }
 
-  .pagination ul {
+  .pagination ol {
     display: flex;
     flex-direction: row;
     padding: 10px 30px;
   }
 
-  .pagination ul li {
+  .pagination ol li {
     list-style: none;
     width: 30px;
     height: 30px;
@@ -650,6 +650,7 @@ section {
 
   .pagination .circle {
     background-color: rgb(186, 145, 186);
+    /* background-color: transparent; */
   }
   
   /* de buttons een hogere z-index meegeven zodat deze boven de cirkels uitlkomen.*/
@@ -666,6 +667,11 @@ section {
     border: none;
     outline: none;
     cursor: pointer;
+  }
+
+  .pagination .pages .page-number button:focus {
+    outline: 0.1rem solid white;
+    border-radius: 50%;
   }
 
   /* Languages */

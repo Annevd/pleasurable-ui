@@ -157,6 +157,17 @@ document.addEventListener("DOMContentLoaded", function() {
      button.addEventListener("click", function() {
          scrollToColumn(index);
      });
+// keyboard accessibility
+     button.addEventListener("focus", function(e) {
+      animateSelect(e);
+  });
+
+  button.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          scrollToColumn(index);
+      }
+  });
  });
 
  function animateSelect(e) {
@@ -164,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
      gsap.to(select, {
          duration: 2,
          x: target.offsetLeft - 37, // Adjust the offset as needed
-         ease: Elastic.easeOut.config(0.6, 0.4)
+         ease: Elastic.easeOut.config(0.8, 0.5)
      });
  }
 
