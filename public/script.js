@@ -182,8 +182,6 @@ if (openSettingsButton) {
 }
 
 // nav menu hamburger icon animation script
-const menuBtn = document.querySelector(".hamburger");
-const menuNav = document.querySelector(".nav-menu");
 
 menuBtn.addEventListener("click", function () {
   menuBtn.classList.toggle("cross");
