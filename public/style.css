@@ -98,6 +98,7 @@ nav {
     gap: 3rem;
 
     & li {
+      position: relative;
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -119,10 +120,6 @@ nav {
   }
 }
 
-/* #active:checked ~ nav {
-  clip-path: circle(75%);
-} */
-
 .menu-button {
   display: flex;
   align-items: center;
@@ -136,11 +133,6 @@ nav {
   border-radius: 50%;
   cursor: pointer;
   z-index: 101;
-}
-
-.menu-button.menu {
-  /* background: white; */
-  display: none;
 }
 
 .menu-button.home {
@@ -255,6 +247,57 @@ svg .rect-three {
 
 .show-menu {
   clip-path: circle(75%);
+}
+
+.heart {
+  position: absolute;
+  right: -0.2rem;
+  bottom: 2.5rem;
+  pointer-events: none;
+  z-index: 101;
+}
+
+.heart-small {
+  display: none;
+}
+
+.heart-alert {
+  position: absolute;
+  display: block;
+  right: -0.25rem;
+  bottom: 6.75rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes scaleRotateIn {
+  0% {
+    transform: scale(0.5) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleRotateOut {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+::view-transition-old(scale-transition) {
+  animation: scaleRotateOut 0.5s forwards;
+}
+
+::view-transition-new(scale-transition) {
+  animation: scaleRotateIn 0.5s forwards;
 }
 
 /* --- Algemene styling --- */
@@ -721,17 +764,6 @@ section {
     display: none;
   }
 
-  /* .liked-playlists .empty-state {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem var(--spacing);
-    border-radius: var(--radius-2);
-    width: 10rem;
-    height: 249px;
-    color: white;
-    background: var(--skeleton);
-  } */
-
   .empty-state {
     display: flex;
     flex-direction: column;
@@ -766,6 +798,10 @@ section {
       height: 45px;
       width: 45px;
     }
+  }
+
+  .liked-playlists .playlist {
+    view-transition-name: scale-transition;
   }
 
   .liked-playlists .playlist:last-of-type,
