@@ -76,6 +76,10 @@
   overflow: hidden;
 }
 
+* {
+  font-family: var(--primary-font);
+}
+
 /* --- Navigatie menu --- */
 
 nav {
@@ -1176,8 +1180,10 @@ section {
   grid-template-rows: repeat(4, 1fr);
 }
 
-.homepage-main h1 {
+.homepage_text-bubble h1 {
   color: black;
+  padding: 0;
+  margin: 0;
 }
 
 .homepage_text-bubble {
@@ -1187,7 +1193,7 @@ section {
   background-color: white;
   height: 15rem;
   min-width: 11rem;
-  padding: 0.5rem 0 0.7rem 0;
+  padding: 1.8rem 0;
   margin: 0;
   border-radius: 4px;
   z-index: 5;
@@ -1200,7 +1206,9 @@ section {
     31% 80%,
     0 80%
   );
+  text-align: center;
 }
+
 .mouse-svg {
   scale: 1.2;
   grid-column: 3/7;
