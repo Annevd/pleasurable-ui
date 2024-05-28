@@ -270,6 +270,18 @@ svg .rect-three {
   height: 2rem;
 }
 
+.liked-playlists .playlist {
+  view-transition-name: scale-transition;
+}
+
+::view-transition-old(scale-transition) {
+  animation: scaleRotateOut 0.5s forwards;
+}
+
+::view-transition-new(scale-transition) {
+  animation: scaleRotateIn 0.5s forwards;
+}
+
 @keyframes scaleRotateIn {
   0% {
     transform: scale(0.5) rotate(-180deg);
@@ -290,14 +302,6 @@ svg .rect-three {
     transform: scale(0.5) rotate(180deg);
     opacity: 0;
   }
-}
-
-::view-transition-old(scale-transition) {
-  animation: scaleRotateOut 0.5s forwards;
-}
-
-::view-transition-new(scale-transition) {
-  animation: scaleRotateIn 0.5s forwards;
 }
 
 /* --- Algemene styling --- */
@@ -598,6 +602,7 @@ section {
 
   .own-playlists {
     margin-bottom: var(--section-spacing);
+    margin-right: 0;
   }
 
   .add-playlist button {
@@ -873,10 +878,6 @@ section {
       height: 45px;
       width: 45px;
     }
-  }
-
-  .liked-playlists .playlist {
-    view-transition-name: scale-transition;
   }
 
   .liked-playlists .playlist:last-of-type,
@@ -1377,6 +1378,7 @@ to {
       max-width: 45rem;
     }
 
+    .own-playlists,
     .liked-playlists,
     .suggested-playlists {
       margin-right: auto;
