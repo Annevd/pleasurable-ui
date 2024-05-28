@@ -600,18 +600,12 @@ section {
     margin-bottom: var(--section-spacing);
   }
 
-  .own-playlists ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    justify-content: center;
-    gap: 1rem;
-  }
-
   .add-playlist button {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: 10rem;
     padding: var(--spacing);
     height: 100%;
     background: var(--skeleton);
@@ -822,13 +816,14 @@ section {
     color: white;
   }
 
-  /* Liked & suggested playlists */
+  /* Owned, liked & suggested playlists */
 
   .liked-playlists {
     margin-bottom: var(--section-spacing);
     margin-right: 0;
   }
 
+  .own-playlists ul,
   .liked-playlists ul,
   .suggested-playlists ul {
     display: flex;
@@ -837,6 +832,7 @@ section {
     gap: 1rem;
   }
 
+  .own-playlists ul::-webkit-scrollbar,
   .liked-playlists ul::-webkit-scrollbar,
   .suggested-playlists ul::-webkit-scrollbar {
     display: none;
@@ -866,6 +862,7 @@ section {
     animation: background 2.8s steps(4) infinite;
   }
 
+  .own-playlists .playlist,
   .liked-playlists .playlist,
   .suggested-playlists .playlist {
     width: 10rem;
