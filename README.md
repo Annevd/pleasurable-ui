@@ -19,6 +19,13 @@ Voor deze opdracht lag de focus op het enhancen van je website met client side s
 Dit hebben wij gedaan door interessante animaties toe te voegen aan het openen van het menu, het icoontje van het menu, de paginatie van de carrousel, de like interactie en CSS hovers.
 Hierdoor gebeurt er op bijna elk component wel wat interessants voor de gebruiker.
 <!-- Voeg een mooie poster visual toe 📸 -->
+
+## Visual
+
+<img width= 500 src="https://github.com/Annevd/pleasurable-ui/assets/144004647/f0c96afe-6e5b-4d6e-9744-67f2ff109688">
+<img width= 500 src="https://github.com/Annevd/pleasurable-ui/assets/144004647/2d0a7e04-28e3-4e14-a138-358691f70970">
+
+
 <!-- Voeg een link toe naar Github Pages 🌐-->
 [Livelink]()
 
@@ -49,6 +56,11 @@ Met keyframe animations, GSAP, Javascript en CSS hovers hebben wij onze website 
 6. Klik op de localhost link en begin met coden!
 
 ## Bronnen
+
+- [About Githhub Projects, quickstart en best practices](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
+- [Making a pull-request](https://www.atlassian.com/git/tutorials/making-a-pull-request)
+- [Using branches](https://www.atlassian.com/git/tutorials/using-branches)
+- [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
 
 ## Licentie
 
