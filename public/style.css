@@ -240,12 +240,12 @@ svg .rect-three {
 
 .cross .rect-one {
   transform: rotate(-45deg);
-  translate: 15px -20px;
+  translate: 7px -8px;
 }
 
 .cross .rect-three {
   transform: rotate(45deg);
-  translate: 38px -52px;
+  translate: 34px -50px;
 }
 
 .cross .rect-two {
