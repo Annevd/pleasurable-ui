@@ -880,6 +880,7 @@ section {
     }
   }
 
+  .own-playlists .playlist:last-of-type,
   .liked-playlists .playlist:last-of-type,
   .suggested-playlists .playlist:last-of-type {
     margin-right: 0.75rem;
