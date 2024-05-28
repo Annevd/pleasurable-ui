@@ -1167,11 +1167,10 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .homepage-main_wrapper {
-  min-width: 100vw;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -1181,41 +1180,29 @@ section {
   color: black;
 }
 
-.homepage_text-bubble_wrapper {
-  grid-column: 2/4;
-  grid-row: 2/4;
-}
-
 .homepage_text-bubble {
+  grid-column: 2/4;
+  grid-row: 1/3;
+  align-self: center;
   background-color: white;
-  height: 7rem;
-  padding: 0 0.75rem;
+  height: 15rem;
+  min-width: 11rem;
+  padding: 0.5rem 0 0.7rem 0;
   margin: 0;
-  border-radius: 12px;
+  border-radius: 4px;
   z-index: 5;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 80%,
+    57% 80%,
+    45% 100%,
+    31% 80%,
+    0 80%
+  );
 }
-
-/* svg */
-.text-bubble_corner {
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  margin-top: -0.2rem;
-  z-index: 1;
-}
-
-.text-bubble_corner svg {
-  position: relative;
-  display: block;
-  width: calc(131% + 1.3px);
-  height: 134px;
-}
-
-.text-bubble_corner .shape-fill {
-  fill: #ffffff;
-}
-
 .mouse-svg {
+  scale: 1.2;
   grid-column: 3/7;
   grid-row: 3/5;
 }
@@ -1238,9 +1225,23 @@ section {
       );
     }
   }
+
+  .mouse-svg {
+    scale: 1.6;
+  }
 }
 
 @media (min-width: 46rem) {
+
+  .mouse-svg {
+    scale: 1.9;
+    grid-column: 5/8;
+  }
+
+  .homepage_text-bubble {
+    grid-column: 3/6;
+  }
+
   section {
     max-width: 45rem;
     margin: 0 auto;
