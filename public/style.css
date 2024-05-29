@@ -221,6 +221,10 @@ nav {
 
 /* hamburger svg animation */
 
+.hamburger svg {
+  translate: 2px 0;
+}
+
 .hamburger rect {
   transition: all 0.25s ease-in-out;
 }
@@ -235,12 +239,12 @@ svg .rect-three {
 
 .cross .rect-one {
   transform: rotate(-45deg);
-  translate: 7px -8px;
+  translate: 11px -18px;
 }
 
 .cross .rect-three {
   transform: rotate(45deg);
-  translate: 34px -50px;
+  translate: 33px -50px;
 }
 
 .cross .rect-two {
