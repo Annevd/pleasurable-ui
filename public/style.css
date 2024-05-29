@@ -129,7 +129,6 @@ nav {
   appearance: none;
   border: none;
   padding: 0.75rem;
-  /* border-radius: var(--radius-1); */
   border-radius: 50%;
   cursor: pointer;
   z-index: 101;
@@ -270,6 +269,18 @@ svg .rect-three {
   height: 2rem;
 }
 
+.liked-playlists .playlist {
+  view-transition-name: scale-transition;
+}
+
+::view-transition-old(scale-transition) {
+  animation: scaleRotateOut 0.5s forwards;
+}
+
+::view-transition-new(scale-transition) {
+  animation: scaleRotateIn 0.5s forwards;
+}
+
 @keyframes scaleRotateIn {
   0% {
     transform: scale(0.5) rotate(-180deg);
@@ -290,14 +301,6 @@ svg .rect-three {
     transform: scale(0.5) rotate(180deg);
     opacity: 0;
   }
-}
-
-::view-transition-old(scale-transition) {
-  animation: scaleRotateOut 0.5s forwards;
-}
-
-::view-transition-new(scale-transition) {
-  animation: scaleRotateIn 0.5s forwards;
 }
 
 /* --- Algemene styling --- */
@@ -598,13 +601,7 @@ section {
 
   .own-playlists {
     margin-bottom: var(--section-spacing);
-  }
-
-  .own-playlists ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    justify-content: center;
-    gap: 1rem;
+    margin-right: 0;
   }
 
   .add-playlist button {
@@ -612,10 +609,12 @@ section {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: 10rem;
     padding: var(--spacing);
     height: 100%;
     background: var(--skeleton);
     border-radius: var(--radius-2);
+    scroll-snap-align: center;
   }
 
   .add-playlist span {
@@ -822,13 +821,14 @@ section {
     color: white;
   }
 
-  /* Liked & suggested playlists */
+  /* Owned, liked & suggested playlists */
 
   .liked-playlists {
     margin-bottom: var(--section-spacing);
     margin-right: 0;
   }
 
+  .own-playlists ul,
   .liked-playlists ul,
   .suggested-playlists ul {
     display: flex;
@@ -837,6 +837,7 @@ section {
     gap: 1rem;
   }
 
+  .own-playlists ul::-webkit-scrollbar,
   .liked-playlists ul::-webkit-scrollbar,
   .suggested-playlists ul::-webkit-scrollbar {
     display: none;
@@ -866,6 +867,7 @@ section {
     animation: background 2.8s steps(4) infinite;
   }
 
+  .own-playlists .playlist,
   .liked-playlists .playlist,
   .suggested-playlists .playlist {
     width: 10rem;
@@ -878,10 +880,7 @@ section {
     }
   }
 
-  .liked-playlists .playlist {
-    view-transition-name: scale-transition;
-  }
-
+  .own-playlists .playlist:last-of-type,
   .liked-playlists .playlist:last-of-type,
   .suggested-playlists .playlist:last-of-type {
     margin-right: 0.75rem;
@@ -1380,6 +1379,7 @@ to {
       max-width: 45rem;
     }
 
+    .own-playlists,
     .liked-playlists,
     .suggested-playlists {
       margin-right: auto;

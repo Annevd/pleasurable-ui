@@ -2,6 +2,7 @@
   // Menu
 const menuBtn = document.querySelector(".hamburger")
 const menuNav = document.querySelector(".nav-menu")
+const menuLinks = menuNav.querySelectorAll('.menu a');
 const heart = document.querySelector(".heart");
 const tlAlert = gsap.timeline({ paused: true });
 const heartAlert = document.querySelector(".menu li:last-of-type svg")
@@ -129,10 +130,6 @@ function cleanClasses() {
     });
   });
 
-  const menuButton = document.querySelector('.menu-button');
-  const navMenu = document.querySelector('.nav-menu');
-  const menuLinks = navMenu.querySelectorAll('.menu a');
-
   // Function to update tabindex
   const setTabIndex = (links, index) => {
       links.forEach(link => {
@@ -143,41 +140,41 @@ function cleanClasses() {
   // Initially set menu links to be not focusable
   setTabIndex(menuLinks, '-1');
 
-  menuButton.addEventListener('click', () => {
-      const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
-      menuButton.setAttribute('aria-expanded', !expanded);
+  menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true' || false;
+      menuBtn.setAttribute('aria-expanded', !expanded);
       
       if (!expanded) {
-          menuButton.classList.add('cross');
-          navMenu.classList.add('show-menu');
+          menuBtn.classList.add('cross');
+          menuNav.classList.add('show-menu');
           setTabIndex(menuLinks, '0');  // Make links focusable
           menuLinks[0].focus();
       } else {
-          menuButton.classList.remove('cross');
-          navMenu.classList.remove('show-menu');
+          menuBtn.classList.remove('cross');
+          menuNav.classList.remove('show-menu');
           setTabIndex(menuLinks, '-1');  // Remove links from tab order
-          menuButton.focus();
+          menuBtn.focus();
       }
   });
 
   // Allow navigation through the menu with the keyboard
   document.addEventListener('keydown', (event) => {
-      if (event.key === 'Tab' && menuButton.getAttribute('aria-expanded') === 'true') {
-          if (document.activeElement === menuButton) {
+      if (event.key === 'Tab' && menuBtn.getAttribute('aria-expanded') === 'true') {
+          if (document.activeElement === menuBtn) {
               menuLinks[0].focus();
               event.preventDefault();
           } else if (document.activeElement === menuLinks[menuLinks.length - 1]) {
-              menuButton.focus();
+              menuBtn.focus();
               event.preventDefault();
           }
       }
 
-      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
-          menuButton.setAttribute('aria-expanded', false);
-          menuButton.classList.remove('cross');
-          navMenu.classList.remove('show-menu');
+      if (event.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+          menuBtn.setAttribute('aria-expanded', false);
+          menuBtn.classList.remove('cross');
+          menuNav.classList.remove('show-menu');
           setTabIndex(menuLinks, '-1');  // Remove links from tab order
-          menuButton.focus();
+          menuBtn.focus();
       }
   });
 
