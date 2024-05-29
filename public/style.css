@@ -76,6 +76,10 @@
   overflow: hidden;
 }
 
+* {
+  font-family: var(--primary-font);
+}
+
 /* --- Navigatie menu --- */
 
 nav {
@@ -217,6 +221,10 @@ nav {
 
 /* hamburger svg animation */
 
+.hamburger svg {
+  translate: 2px 0;
+}
+
 .hamburger rect {
   transition: all 0.25s ease-in-out;
 }
@@ -231,12 +239,12 @@ svg .rect-three {
 
 .cross .rect-one {
   transform: rotate(-45deg);
-  translate: 15px -20px;
+  translate: 11px -18px;
 }
 
 .cross .rect-three {
   transform: rotate(45deg);
-  translate: 38px -52px;
+  translate: 33px -50px;
 }
 
 .cross .rect-two {
@@ -410,6 +418,60 @@ section {
 
 .close-settings svg path {
   stroke: white;
+}
+
+/** HOMEPAGE **/
+
+.homepage-main {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/assets/house-mouse.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.homepage-main_wrapper {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.homepage_text-bubble h1 {
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.homepage_text-bubble {
+  grid-column: 2/4;
+  grid-row: 1/3;
+  align-self: center;
+  background-color: white;
+  height: 15rem;
+  min-width: 11rem;
+  padding: 1.8rem 0;
+  margin: 0;
+  border-radius: 4px;
+  z-index: 5;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 80%,
+    57% 80%,
+    45% 100%,
+    31% 80%,
+    0 80%
+  );
+  text-align: center;
+}
+
+.mouse-svg {
+  scale: 1.2;
+  grid-column: 3/7;
+  grid-row: 3/5;
 }
 
 /* Algemene styling story */
@@ -1324,15 +1386,14 @@ section {
   background-repeat: no-repeat;
   animation: heart-burst 1.25s steps(10) 3;
 }
-}
 
 @keyframes heart-burst {
-from {
-  background-position: left;
-}
-to {
-  background-position: right;
-}
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }
 
 .suggested-playlists .like-button svg:hover,
@@ -1362,9 +1423,23 @@ to {
       );
     }
   }
+
+  .mouse-svg {
+    scale: 1.6;
+  }
 }
 
 @media (min-width: 46rem) {
+
+  .mouse-svg {
+    scale: 1.9;
+    grid-column: 5/8;
+  }
+
+  .homepage_text-bubble {
+    grid-column: 3/6;
+  }
+
   section {
     max-width: 45rem;
     margin: 0 auto;

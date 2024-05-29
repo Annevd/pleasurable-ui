@@ -216,6 +216,89 @@ if (openSettingsButton) {
   });
 }
 
+menuNav.addEventListener("click", function() {
+  console.log("click!")
+})
+
+
+
+// mouse eye follow animations
+
+// Add an event listener to track mouse movement
+document.addEventListener('mousemove', (event) => {
+  // Get the current cursor position
+  const cursorX = event.clientX;
+  const cursorY = event.clientY;
+
+  // Select the elements representing the right eye area and right pupil
+  const rightEye = document.querySelector('.right-eye-area');
+  const rightPupil = document.querySelector('.right-pupil');
+  
+  // Select the elements representing the left eye area and left pupil
+  const leftEye = document.querySelector('.left-eye-area');
+  const leftPupil = document.querySelector('.left-pupil');
+  
+  // Move the right pupil according to the cursor position
+  moveRightEye(rightEye, rightPupil, cursorX, cursorY);
+  
+  // Move the left pupil according to the cursor position
+  moveLeftEye(leftEye, leftPupil, cursorX, cursorY);
+});
+
+// Function to move the right pupil
+function moveRightEye(rightEye, rightPupil, cursorX, cursorY) {
+  // Get the bounding rectangle of the right eye area
+  const rightEyeRect = rightEye.getBoundingClientRect();
+  // Calculate the center coordinates of the right eye area
+  const rightEyeCenterX = rightEyeRect.left + rightEyeRect.width / 2;
+  const rightEyeCenterY = rightEyeRect.top + rightEyeRect.height / 2;
+
+  // Calculate the difference between the cursor position and the eye center
+  const rightDeltaX = cursorX - rightEyeCenterX;
+  const rightDeltaY = cursorY - rightEyeCenterY;
+  // Calculate the distance between the cursor and the eye center
+  const rightDistance = Math.sqrt(rightDeltaX * rightDeltaX + rightDeltaY * rightDeltaY);
+
+  // Limit the pupil movement to within the eyeball
+  const rightMaxMovement = rightEyeRect.width / 8; // Maximum movement within the eye area (adjust as necessary)
+  const rightLimitedDistance = Math.min(rightDistance, rightMaxMovement);
+  // Calculate the angle between the cursor and the eye center
+  const rightAngle = Math.atan2(rightDeltaY, rightDeltaX);
+  // Calculate the new position for the right pupil
+  const rightPupilX = rightLimitedDistance * Math.cos(rightAngle);
+  const rightPupilY = rightLimitedDistance * Math.sin(rightAngle);
+
+  // Move the right pupil to the new position
+  rightPupil.style.transform = `translate(${rightPupilX}px, ${rightPupilY}px)`;
+}
+
+// Function to move the left pupil
+function moveLeftEye(leftEye, leftPupil, cursorX, cursorY) {
+  // Get the bounding rectangle of the left eye area
+  const leftEyeRect = leftEye.getBoundingClientRect();
+  // Calculate the center coordinates of the left eye area
+  const leftEyeCenterX = leftEyeRect.left + leftEyeRect.width / 2;
+  const leftEyeCenterY = leftEyeRect.top + leftEyeRect.height / 2;
+
+  // Calculate the difference between the cursor position and the eye center
+  const leftDeltaX = cursorX - leftEyeCenterX;
+  const leftDeltaY = cursorY - leftEyeCenterY;
+  // Calculate the distance between the cursor and the eye center
+  const leftDistance = Math.sqrt(leftDeltaX * leftDeltaX + leftDeltaY * leftDeltaY);
+
+  // Limit the pupil movement to within the eyeball
+  const leftMaxMovement = leftEyeRect.width / 8; // Maximum movement within the eye area (adjust as necessary)
+  const leftLimitedDistance = Math.min(leftDistance, leftMaxMovement);
+  // Calculate the angle between the cursor and the eye center
+  const leftAngle = Math.atan2(leftDeltaY, leftDeltaX);
+  // Calculate the new position for the left pupil
+  const leftPupilX = leftLimitedDistance * Math.cos(leftAngle);
+  const leftPupilY = leftLimitedDistance * Math.sin(leftAngle);
+
+  // Move the left pupil to the new position
+  leftPupil.style.transform = `translate(${leftPupilX}px, ${leftPupilY}px)`;
+}
+
 // nav menu hamburger icon animation script
 
 menuBtn.addEventListener("click", function() {
