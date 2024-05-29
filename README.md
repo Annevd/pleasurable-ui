@@ -22,12 +22,13 @@ Hierdoor gebeurt er op bijna elk component wel wat interessants voor de gebruike
 
 ## Visual
 
+<img width= 500 src="https://github.com/Annevd/pleasurable-ui/assets/144004647/27973a9d-da1a-46fb-960d-8e6f603dbb83">
 <img width= 500 src="https://github.com/Annevd/pleasurable-ui/assets/144004647/f0c96afe-6e5b-4d6e-9744-67f2ff109688">
 <img width= 500 src="https://github.com/Annevd/pleasurable-ui/assets/144004647/2d0a7e04-28e3-4e14-a138-358691f70970">
 
 
 <!-- Voeg een link toe naar Github Pages 🌐-->
-[Livelink]()
+[Livelink](https://pleasurable-ui-p9p8.onrender.com)
 
 ## Gebruik
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
